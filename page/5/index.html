@@ -193,15 +193,15 @@
 </nav>
       
   
-    <article id="post-linux_tty" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-cloud" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/02/25/linux_tty/" class="article-date">
+      <a href="/2014/02/25/cloud/" class="article-date">
   	<time datetime="2014-02-25T11:44:33.000Z" itemprop="datePublished">2月 25 2014</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux-Secure/">Linux Secure</a>
+    <a class="article-category-link" href="/categories/CloudStack/">CloudStack</a>
   </div>
 
       
@@ -216,7 +216,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/02/25/linux_tty/">Linux tty secure</a>
+      <a class="article-title" href="/2014/02/25/cloud/">Cloudstack 4.2.1-快照测试案例</a>
     </h1>
   
 
@@ -224,15 +224,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Linux_tty_secure">Linux tty secure</h4>
-<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
-<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
-<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
-<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
-<p>
+        <p>测试环境：</p>
+<p>Vmware虚拟化</p>
+<pre><code>centos5.3 x86_64 
+centos6.4 x86_64
+</code></pre><p>vmware快照的组成：</p>
+<pre><code><span class="string">.</span><span class="comment">vmdk</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">delta的基础磁盘，当删除该虚机的所有快照时</span><span class="string">,</span><span class="comment">所有创建的delta文件都将合并到原始的vmdk磁盘，如果删除一个单独的快照，那么他的delta的信息合并到父级，当恢复时无论恢复哪个快照，这个快照就是新的父级快照</span>
+<span class="string">.</span><span class="comment">vmsd</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">用于存放快照的元数据和信息</span>
+<span class="string">.</span><span class="comment">vmsn</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">快照的状态文件</span><span class="string">,</span><span class="comment">用于存放快照的精准状态</span>
+<span class="string">.</span><span class="comment">vmss</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">vmware暂停状态的文件</span><span class="string">,</span><span class="comment">移动快照该文件自动删除</span>
+</code></pre><p>
         
           <p class="article-more-link">
-            <a href="/2014/02/25/linux_tty/#more">more >></a>
+            <a href="/2014/02/25/cloud/#more">more >></a>
           </p>
         
       

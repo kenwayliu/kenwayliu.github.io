@@ -82,6 +82,21 @@
   </url>
   
   <url>
+    <loc>http://cloudbps.com/2014/05/05/cloudsession/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/03/13/cloudstack-error-across/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/04/17/cloud-templtate/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://cloudbps.com/2014/05/04/cloudupdate/</loc>
     <lastmod>2015-01-10T08:28:57.000Z</lastmod>
   </url>
@@ -97,32 +112,12 @@
   </url>
   
   <url>
-    <loc>http://cloudbps.com/2014/03/13/cloudstack-error-across/</loc>
-    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cloudbps.com/2014/05/05/cloudsession/</loc>
-    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cloudbps.com/2014/04/17/cloud-templtate/</loc>
-    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cloudbps.com/2014/04/21/CloudAddPrimary/</loc>
-    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cloudbps.com/2014/06/08/cloudstack_zone/</loc>
-    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://cloudbps.com/2014/02/25/cloud/</loc>
+    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/05/07/clouddelpri/</loc>
     <lastmod>2015-01-10T08:28:56.000Z</lastmod>
   </url>
   
@@ -132,7 +127,12 @@
   </url>
   
   <url>
-    <loc>http://cloudbps.com/2014/05/07/clouddelpri/</loc>
+    <loc>http://cloudbps.com/2014/06/08/cloudstack_zone/</loc>
+    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/04/21/CloudAddPrimary/</loc>
     <lastmod>2015-01-10T08:28:56.000Z</lastmod>
   </url>
   

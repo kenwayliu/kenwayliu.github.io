@@ -244,58 +244,6 @@
 
 
   
-    <article id="post-tun" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/10/tun/" class="article-date">
-  	<time datetime="2015-01-10T04:19:00.000Z" itemprop="datePublished">1月 10 2015</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/调优/">调优</a>
-  </div>
-
-      
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/10/tun/">性能调优攻略(转自爱开源)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一、系统性能定义</p>
-<p>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
-<p>Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。<br>Latency， 系统延迟。也就是系统在处理一个请求或一个任务时的延迟。<br>一般来说，一个系统的性能受到这两个条件的约束，缺一不可。比如，我的系统可以顶得住一百万的并发，但是系统的延迟是2分钟以上，那么，这个一百万的负载毫无意义。系统延迟很短，但是吞吐量很低，同样没有意义。所以，一个好的系统的性能测试必然受到这两个条件的同时作用。 有经验的朋友一定知道，这两个东西的一些关系：</p>
-<p>Throughput越大，Latency会越差。因为请求量过大，系统太繁忙，所以响应速度自然会低。<br>Latency越好，能支持的Throughput就会越高。因为Latency短说明处理速度快，于是就可以处理更多的请求。<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/01/10/tun/#more">more >></a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
     <article id="post-cdn" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -337,6 +285,58 @@
         
           <p class="article-more-link">
             <a href="/2015/01/10/cdn/#more">more >></a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-tun" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/10/tun/" class="article-date">
+  	<time datetime="2015-01-10T04:19:00.000Z" itemprop="datePublished">1月 10 2015</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/调优/">调优</a>
+  </div>
+
+      
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/10/tun/">性能调优攻略(转自爱开源)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、系统性能定义</p>
+<p>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
+<p>Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。<br>Latency， 系统延迟。也就是系统在处理一个请求或一个任务时的延迟。<br>一般来说，一个系统的性能受到这两个条件的约束，缺一不可。比如，我的系统可以顶得住一百万的并发，但是系统的延迟是2分钟以上，那么，这个一百万的负载毫无意义。系统延迟很短，但是吞吐量很低，同样没有意义。所以，一个好的系统的性能测试必然受到这两个条件的同时作用。 有经验的朋友一定知道，这两个东西的一些关系：</p>
+<p>Throughput越大，Latency会越差。因为请求量过大，系统太繁忙，所以响应速度自然会低。<br>Latency越好，能支持的Throughput就会越高。因为Latency短说明处理速度快，于是就可以处理更多的请求。<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/10/tun/#more">more >></a>
           </p>
         
       
