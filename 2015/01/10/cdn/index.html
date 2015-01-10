@@ -5,24 +5,15 @@
   
   <title>CDN介绍(来自又拍云存储) | 猫在云端</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CDN作用
-
-缓存代理缓存代理类似内容提供商源数据中心的一个透明镜像，这些内容可以在边缘服务器中缓存和分发，对于普通的网络用户来讲，它通过智能DNS的筛选，用户的请求被透明地指向离他最近的省内骨干节点，最大限度的缩短用户信息的传输距离。在任何时间、地点或者不同的运营商之间（尤其在中国），快速响应用户请求。
-它是通过在网络各处放置节点服务器，所以无需更改源站的网络拓扑，而是根据智能路由和用户就近原则">
+  <meta name="description" content="CDN作用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CDN介绍(来自又拍云存储)">
 <meta property="og:url" content="http://cloudbps.com/2015/01/10/cdn/">
 <meta property="og:site_name" content="猫在云端">
-<meta property="og:description" content="CDN作用
-
-缓存代理缓存代理类似内容提供商源数据中心的一个透明镜像，这些内容可以在边缘服务器中缓存和分发，对于普通的网络用户来讲，它通过智能DNS的筛选，用户的请求被透明地指向离他最近的省内骨干节点，最大限度的缩短用户信息的传输距离。在任何时间、地点或者不同的运营商之间（尤其在中国），快速响应用户请求。
-它是通过在网络各处放置节点服务器，所以无需更改源站的网络拓扑，而是根据智能路由和用户就近原则">
+<meta property="og:description" content="CDN作用">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CDN介绍(来自又拍云存储)">
-<meta name="twitter:description" content="CDN作用
-
-缓存代理缓存代理类似内容提供商源数据中心的一个透明镜像，这些内容可以在边缘服务器中缓存和分发，对于普通的网络用户来讲，它通过智能DNS的筛选，用户的请求被透明地指向离他最近的省内骨干节点，最大限度的缩短用户信息的传输距离。在任何时间、地点或者不同的运营商之间（尤其在中国），快速响应用户请求。
-它是通过在网络各处放置节点服务器，所以无需更改源站的网络拓扑，而是根据智能路由和用户就近原则">
+<meta name="twitter:description" content="CDN作用">
 
   
     <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
@@ -43,7 +34,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<div class="profilepic">
-			<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+			<img src="https://avatars2.githubusercontent.com/u/5484331?v=3&amp;s=150">
 		</div>
 
 		<hgroup>
@@ -167,7 +158,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+				<img src="https://avatars2.githubusercontent.com/u/5484331?v=3&amp;s=150">
 			</div>
 
 			<hgroup>
@@ -234,10 +225,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="CDN作用">CDN作用</h3>
+<p><a id="more"></a></p>
 <ul>
 <li><p>缓存代理<br>缓存代理类似内容提供商源数据中心的一个透明镜像，这些内容可以在边缘服务器中缓存和分发，对于普通的网络用户来讲，它通过智能DNS的筛选，用户的请求被透明地指向离他最近的省内骨干节点，最大限度的缩短用户信息的传输距离。在任何时间、地点或者不同的运营商之间（尤其在中国），快速响应用户请求。</p>
 <p>它是通过在网络各处放置节点服务器，所以无需更改源站的网络拓扑，而是根据智能路由和用户就近原则匹配，从而确保了内容快又稳定的传输，大大提高了用户访问网站的响应速度。</p>
-<a id="more"></a></li>
+</li>
 <li><p>路由加速<br>CDN服务初衷是确保快速可靠地分发静态内容，相对于动态内容来说，由于动态内容必须长连接来操持连接和通讯，只是用户到服务商之间的链路和质量都无法控制。因此为了提供快速的网络体验，有必要事先设置一些最佳路由。如省内骨干网，双线机房，以改善用户的网络体验。在中国典型的互联互通问题上，网络游戏加速就是一些最佳实践。</p>
 </li>
 <li><p>安全防护<br>利用好了CDN网络，无论面对是渗透还是DDoS攻击，攻击的目标大都会被指向到了CDN，进而保护了用户源站。因为CDN是分布式的，所以即使遭受DDoS攻击，也具备分散性，大大减少了源站收到毁灭打击的可能性。在架构的前期，还可以通过CDN做一些前置的安全保护工作，如拦截SQL注入、XSS跨站、网站挂马、篡改等黑客攻击。</p>
@@ -257,12 +249,14 @@
 <li><p>这里给几个SSD实战的小贴士： </p>
 <p>选择EXT4文件系统+TRIM模式（mount -o defaults,noatime,nodiratime,barrier=0,discard），Btrfs建议少冒险<br>如果是使用三星的固态硬盘，可以尝试它贡献给开源的针对固态硬盘优化的F2FS文件系统，相当不错的选择<br>I/O Schedulers调度算法，可以使用CFQ或者Deadline算法<br>内核参数调整，SSD所在硬盘，echo 0 &gt; /sys/block/sda/queue/rotational<br>随机读写 vs 顺序读写<br>机械硬盘的连续读写性很好，但随机读写性能很差。这是因为磁头移动至正确的磁道上需要时间，随机读写时，也就需要磁头和探针频繁的转动，而机械结构的磁头和探针的位置调整是十分费时的，这就严重影响到硬盘的寻址速度，进而影响到随机写入速度。</p>
 <p>在存储小文件（图片）、OLTP数据库应用时，随机读写性能（IOPS）是最重要指标。由于固态硬盘没有普通硬盘的机械结构，也不存在机械硬盘的寻道问题，因此系统能够在低于1ms的时间内对任意位置存储单元完成输入/输出操作。</p>
-</li>
+<ul>
 <li><p>作者经验笔记：</p>
 <ul>
 <li>BIOS里务必开启AHCI模式（能支持SATA热插拔和NCQ寻址方式，提速→300%，当然内核也要支持AHCI模式）</li>
 <li>SSD的主控芯片相当于大脑中枢，非常重要，建议用Intel、Samsung、Marvell等知名品牌</li>
 <li>SSD更适合应用在随机读写场景，因此需要认真思考什么场合应用</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>大文件 vs 小文件<br>大多数的存储系统都是针对大文件而设计的，对小文件而言，大文件的存储系统无法适应小文件的存储需求，它造成元数据管理、数据布局和I/O管理、Cache管理、网络开销等方面性能和存储效率降低。</p>

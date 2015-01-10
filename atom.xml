@@ -4,7 +4,7 @@
   <subtitle><![CDATA[做自己喜欢做的事，相信自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cloudbps.com/"/>
-  <updated>2015-01-10T18:25:06.799Z</updated>
+  <updated>2015-01-10T18:37:34.972Z</updated>
   <id>http://cloudbps.com/</id>
   
   <author>
@@ -62,12 +62,13 @@
     <link href="http://cloudbps.com/2015/01/10/cdn/"/>
     <id>http://cloudbps.com/2015/01/10/cdn/</id>
     <published>2015-01-10T04:19:00.000Z</published>
-    <updated>2015-01-10T17:21:59.000Z</updated>
+    <updated>2015-01-10T18:30:34.000Z</updated>
     <content type="html"><![CDATA[<h3 id="CDN作用">CDN作用</h3>
+<p><a id="more"></a></p>
 <ul>
 <li><p>缓存代理<br>缓存代理类似内容提供商源数据中心的一个透明镜像，这些内容可以在边缘服务器中缓存和分发，对于普通的网络用户来讲，它通过智能DNS的筛选，用户的请求被透明地指向离他最近的省内骨干节点，最大限度的缩短用户信息的传输距离。在任何时间、地点或者不同的运营商之间（尤其在中国），快速响应用户请求。</p>
 <p>它是通过在网络各处放置节点服务器，所以无需更改源站的网络拓扑，而是根据智能路由和用户就近原则匹配，从而确保了内容快又稳定的传输，大大提高了用户访问网站的响应速度。</p>
-<a id="more"></a></li>
+</li>
 <li><p>路由加速<br>CDN服务初衷是确保快速可靠地分发静态内容，相对于动态内容来说，由于动态内容必须长连接来操持连接和通讯，只是用户到服务商之间的链路和质量都无法控制。因此为了提供快速的网络体验，有必要事先设置一些最佳路由。如省内骨干网，双线机房，以改善用户的网络体验。在中国典型的互联互通问题上，网络游戏加速就是一些最佳实践。</p>
 </li>
 <li><p>安全防护<br>利用好了CDN网络，无论面对是渗透还是DDoS攻击，攻击的目标大都会被指向到了CDN，进而保护了用户源站。因为CDN是分布式的，所以即使遭受DDoS攻击，也具备分散性，大大减少了源站收到毁灭打击的可能性。在架构的前期，还可以通过CDN做一些前置的安全保护工作，如拦截SQL注入、XSS跨站、网站挂马、篡改等黑客攻击。</p>
@@ -87,12 +88,14 @@
 <li><p>这里给几个SSD实战的小贴士： </p>
 <p>选择EXT4文件系统+TRIM模式（mount -o defaults,noatime,nodiratime,barrier=0,discard），Btrfs建议少冒险<br>如果是使用三星的固态硬盘，可以尝试它贡献给开源的针对固态硬盘优化的F2FS文件系统，相当不错的选择<br>I/O Schedulers调度算法，可以使用CFQ或者Deadline算法<br>内核参数调整，SSD所在硬盘，echo 0 &gt; /sys/block/sda/queue/rotational<br>随机读写 vs 顺序读写<br>机械硬盘的连续读写性很好，但随机读写性能很差。这是因为磁头移动至正确的磁道上需要时间，随机读写时，也就需要磁头和探针频繁的转动，而机械结构的磁头和探针的位置调整是十分费时的，这就严重影响到硬盘的寻址速度，进而影响到随机写入速度。</p>
 <p>在存储小文件（图片）、OLTP数据库应用时，随机读写性能（IOPS）是最重要指标。由于固态硬盘没有普通硬盘的机械结构，也不存在机械硬盘的寻道问题，因此系统能够在低于1ms的时间内对任意位置存储单元完成输入/输出操作。</p>
-</li>
+<ul>
 <li><p>作者经验笔记：</p>
 <ul>
 <li>BIOS里务必开启AHCI模式（能支持SATA热插拔和NCQ寻址方式，提速→300%，当然内核也要支持AHCI模式）</li>
 <li>SSD的主控芯片相当于大脑中枢，非常重要，建议用Intel、Samsung、Marvell等知名品牌</li>
 <li>SSD更适合应用在随机读写场景，因此需要认真思考什么场合应用</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>大文件 vs 小文件<br>大多数的存储系统都是针对大文件而设计的，对小文件而言，大文件的存储系统无法适应小文件的存储需求，它造成元数据管理、数据布局和I/O管理、Cache管理、网络开销等方面性能和存储效率降低。</p>
@@ -199,10 +202,7 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="CDN作用">CDN作用</h3>
-<ul>
-<li><p>缓存代理<br>缓存代理类似内容提供商源数据中心的一个透明镜像，这些内容可以在边缘服务器中缓存和分发，对于普通的网络用户来讲，它通过智能DNS的筛选，用户的请求被透明地指向离他最近的省内骨干节点，最大限度的缩短用户信息的传输距离。在任何时间、地点或者不同的运营商之间（尤其在中国），快速响应用户请求。</p>
-<p>它是通过在网络各处放置节点服务器，所以无需更改源站的网络拓扑，而是根据智能路由和用户就近原则匹配，从而确保了内容快又稳定的传输，大大提高了用户访问网站的响应速度。</p>
-]]>
+<p>]]>
     
     </summary>
     
@@ -707,6 +707,27 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Cloudstack 4.2.1-模板注册问题]]></title>
+    <link href="http://cloudbps.com/2014/04/17/cloud-templtate/"/>
+    <id>http://cloudbps.com/2014/04/17/cloud-templtate/</id>
+    <published>2014-04-16T16:00:00.000Z</published>
+    <updated>2015-01-10T18:18:05.000Z</updated>
+    <content type="html"><![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">状态<span class="symbol">:</span> connection refused</div><div class="line">      </div><div class="line">      碰到这个文件需要修改全局变量参数</div><div class="line">      	secstorage.allowed.internal.sites  在后面输入二级存储的<span class="constant">IP</span>就可以, xx.xx.xx.xx/<span class="number">32</span> 就可以了,如果只写<span class="constant">IP</span>地址是不可以的</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</d]]>
+    </summary>
+    
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
+      <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Cloudstack 4.2.1-二级存储+主存储网络中断.]]></title>
     <link href="http://cloudbps.com/2014/04/17/cloud-sec-proys/"/>
     <id>http://cloudbps.com/2014/04/17/cloud-sec-proys/</id>
@@ -728,27 +749,6 @@
     <![CDATA[<p>一.由于二级存储和主存储放在一起,下午突然网络中断可想而知后果的严重性了.系统vm全部read-only,无法挂在文件系统.解决思路</p>
 <ul>
 <li><p>1.1.当网络成功恢复后,登录UI查看功能vm的状态,如果都是Runing on的状态,那么就OK,如果不是]]>
-    </summary>
-    
-      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
-    
-      <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cloudstack 4.2.1-模板注册问题]]></title>
-    <link href="http://cloudbps.com/2014/04/17/cloud-templtate/"/>
-    <id>http://cloudbps.com/2014/04/17/cloud-templtate/</id>
-    <published>2014-04-16T16:00:00.000Z</published>
-    <updated>2015-01-10T18:18:05.000Z</updated>
-    <content type="html"><![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">状态<span class="symbol">:</span> connection refused</div><div class="line">      </div><div class="line">      碰到这个文件需要修改全局变量参数</div><div class="line">      	secstorage.allowed.internal.sites  在后面输入二级存储的<span class="constant">IP</span>就可以, xx.xx.xx.xx/<span class="number">32</span> 就可以了,如果只写<span class="constant">IP</span>地址是不可以的</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</d]]>
     </summary>
     
       <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
@@ -885,74 +885,46 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cloudstack 4.2.1-快照测试案例]]></title>
-    <link href="http://cloudbps.com/2014/02/25/cloud/"/>
-    <id>http://cloudbps.com/2014/02/25/cloud/</id>
+    <title><![CDATA[Linux tty secure]]></title>
+    <link href="http://cloudbps.com/2014/02/25/linux_tty/"/>
+    <id>http://cloudbps.com/2014/02/25/linux_tty/</id>
     <published>2014-02-25T11:44:33.000Z</published>
-    <updated>2015-01-10T18:15:03.000Z</updated>
-    <content type="html"><![CDATA[<p>测试环境：</p>
-<p>Vmware虚拟化</p>
-<pre><code>centos5.3 x86_64 
-centos6.4 x86_64
-</code></pre><p>vmware快照的组成：</p>
-<pre><code><span class="string">.</span><span class="comment">vmdk</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">delta的基础磁盘，当删除该虚机的所有快照时</span><span class="string">,</span><span class="comment">所有创建的delta文件都将合并到原始的vmdk磁盘，如果删除一个单独的快照，那么他的delta的信息合并到父级，当恢复时无论恢复哪个快照，这个快照就是新的父级快照</span>
-<span class="string">.</span><span class="comment">vmsd</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">用于存放快照的元数据和信息</span>
-<span class="string">.</span><span class="comment">vmsn</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">快照的状态文件</span><span class="string">,</span><span class="comment">用于存放快照的精准状态</span>
-<span class="string">.</span><span class="comment">vmss</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">vmware暂停状态的文件</span><span class="string">,</span><span class="comment">移动快照该文件自动删除</span>
-</code></pre><p><a id="more"></a></p>
-<h5 id="1-快照对象">1.快照对象</h5>
-<p>1.1 实例</p>
-<pre><code>实例的快照存储在主存储当中
-</code></pre><p>1.2数据盘</p>
-<pre><code>卷(数据磁盘和系统磁盘)的快照存储在二级存储中
-</code></pre><h5 id="2-快照方式">2.快照方式</h5>
-<pre><code><span class="number">2.1</span>普通快照(<span class="keyword">Disk</span>)
-<span class="number">2.2</span>内存快照(<span class="keyword">Disk</span>+Memory)
-</code></pre><h5 id="3-两者的区别">3.两者的区别</h5>
-<table>
-<thead>
-<tr>
-<th>快照方式</th>
-<th>快照速度</th>
-<th>占用空间</th>
-<th>数据可用程度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>普通快照</td>
-<td>快</td>
-<td>和系统一样大,基于父级的增量备份</td>
-<td>冷数据完全恢复，热数据无法备份</td>
-</tr>
-<tr>
-<td>内存快照</td>
-<td>较慢</td>
-<td>每次快照全备数据，占用系统空间大</td>
-<td>同时备份冷数据和热数据,精确保持系统当前状态</td>
-</tr>
-</tbody>
-</table>
-<p>冷数据：已经写到磁盘的数据</p>
-<p>热数据：内存中的数据</p>
+    <updated>2015-01-10T18:19:32.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="Linux_tty_secure">Linux tty secure</h4>
+<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
+<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
+<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
+<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
+<p><a id="more"></a><br>For example, this export command</p>
+<p>export TMOUT=60</p>
+<p>will immediately get the Linux OS to automatically logout an user after his/her login session being idle for 60 seconds or 1 minute!</p>
+<p>The TMOUT environment variable is applied to a command line console login session only.</p>
+<p>For X-window or GUI login, you can easily turn on any pretty auto-lock screen-saver, that works very much like those in Windows.</p>
+<p>For testing purpose, you can set a lower limit. While login to Linux, su to another user ID and execute</p>
+<p>export TMOUT=10</p>
+<p>After being idle for 10 seconds, you’ll likely see this warning message appears and the su login session will be terminated or log out immediately.</p>
+<p>timed out waiting for input: auto-logout</p>
+<p>In order the apply TMOUT to all Linux login accounts, you can put that export command to the login scripts or login profile (.bash_profile or .profile) in respective user home directory.</p>
+<p>But, the easiest way is to write the export command in the system profile instead of respective user’s profile!</p>
+<p>That’s to say, you can append the export TMOUT=60 command to /etc/profile (i.e. the system profile)!</p>
+<p>Bear in mind that any login user can simply overwrite this TMOUT setting!</p>
+<p>For example, he or she can easily disable or extend the time-out value before auto-logout feature triggered. To disable the Linux auto-logout user feature, just set the TMOUT to zero, i.e.</p>
+<p>export TMOUT=0</p>
+<p>In addition, the Linux TMOUT environment variable will not effective if the user has an active or open document. For example, if the VI editor is open, the Linux auto-logout feature in command console will not working!</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>测试环境：</p>
-<p>Vmware虚拟化</p>
-<pre><code>centos5.3 x86_64 
-centos6.4 x86_64
-</code></pre><p>vmware快照的组成：</p>
-<pre><code><span class="string">.</span><span class="comment">vmdk</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">delta的基础磁盘，当删除该虚机的所有快照时</span><span class="string">,</span><span class="comment">所有创建的delta文件都将合并到原始的vmdk磁盘，如果删除一个单独的快照，那么他的delta的信息合并到父级，当恢复时无论恢复哪个快照，这个快照就是新的父级快照</span>
-<span class="string">.</span><span class="comment">vmsd</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">用于存放快照的元数据和信息</span>
-<span class="string">.</span><span class="comment">vmsn</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">快照的状态文件</span><span class="string">,</span><span class="comment">用于存放快照的精准状态</span>
-<span class="string">.</span><span class="comment">vmss</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">vmware暂停状态的文件</span><span class="string">,</span><span class="comment">移动快照该文件自动删除</span>
-</code></pre><p>]]>
+    <![CDATA[<h4 id="Linux_tty_secure">Linux tty secure</h4>
+<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
+<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
+<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
+<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
+<p>]]>
     
     </summary>
     
-      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+      <category term="系统安全" scheme="http://cloudbps.com/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
     
-      <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
+      <category term="Linux Secure" scheme="http://cloudbps.com/categories/Linux-Secure/"/>
     
   </entry>
   

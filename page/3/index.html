@@ -34,7 +34,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<div class="profilepic">
-			<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+			<img src="https://avatars2.githubusercontent.com/u/5484331?v=3&amp;s=150">
 		</div>
 
 		<hgroup>
@@ -158,7 +158,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+				<img src="https://avatars2.githubusercontent.com/u/5484331?v=3&amp;s=150">
 			</div>
 
 			<hgroup>
@@ -411,10 +411,10 @@
 
 
   
-    <article id="post-cloud-sec-proys" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-cloud-templtate" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/04/17/cloud-sec-proys/" class="article-date">
+      <a href="/2014/04/17/cloud-templtate/" class="article-date">
   	<time datetime="2014-04-16T16:00:00.000Z" itemprop="datePublished">4月 17 2014</time>
 </a>
       
@@ -436,7 +436,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/17/cloud-sec-proys/">Cloudstack 4.2.1-二级存储+主存储网络中断.</a>
+      <a class="article-title" href="/2014/04/17/cloud-templtate/">Cloudstack 4.2.1-模板注册问题</a>
     </h1>
   
 
@@ -444,17 +444,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一.由于二级存储和主存储放在一起,下午突然网络中断可想而知后果的严重性了.系统vm全部read-only,无法挂在文件系统.解决思路</p>
-<ul>
-<li><p>1.1.当网络成功恢复后,登录UI查看功能vm的状态,如果都是Runing on的状态,那么就OK,如果不是那么.</p>
-</li>
-<li><p>1.2保证管理网络,计算节点网络可以访问存储服务器(可链接,可写入)</p>
-</li>
-<li><p>1.3.如果系统vm处于starting的状态了,这时可以登录vm查看功能vm的状态,如果系统vm已经read-only,那么直接修改数据库,把状态修改为Stopped,然后重启系统vm,先重启ssvm,如果ssvm还是无法启动,或者根本就无法发送命令,那么直接重启管理端,然后在销毁ssvm,让系统重建.重建完成后查看状态,一般就可以解决问题.</p>
-</li>
-<li><p>1.4.然后在来处理proxy的问题</p>
-</li>
-</ul>
+        <p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">状态<span class="symbol">:</span> connection refused</div><div class="line">      </div><div class="line">      碰到这个文件需要修改全局变量参数</div><div class="line">      	secstorage.allowed.internal.sites  在后面输入二级存储的<span class="constant">IP</span>就可以, xx.xx.xx.xx/<span class="number">32</span> 就可以了,如果只写<span class="constant">IP</span>地址是不可以的</div></pre></td></tr></table></figure>
+
 
       
     </div>
