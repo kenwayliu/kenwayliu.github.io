@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Cloudstack 4.2.1-无法创建vm | 猫在云端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.今天创建vm,抛出以下异常通过以下方法可以解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cloudstack 4.2.1-无法创建vm">
+<meta property="og:url" content="http://cloudbps.com/2014/03/13/cloudstack-error-across/">
+<meta property="og:site_name" content="猫在云端">
+<meta property="og:description" content="1.今天创建vm,抛出以下异常通过以下方法可以解决">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cloudstack 4.2.1-无法创建vm">
+<meta name="twitter:description" content="1.今天创建vm,抛出以下异常通过以下方法可以解决">
+
+  
+    <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/缓存加速/" style="font-size: NaNpx;">缓存加速</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zipperary.com/">Zippera的Blog</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://kisspuppet.com/">Puppet运维自动化技术分享</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xuchanggang.cn/">没有伞的孩子必须努力奔跑</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bubbyroom.com/">守住每一天</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://opython.com/">Python自动化运维</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.aikaiyuan.com/">爱开源</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://noops.me/">小米运维</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					喜欢交流,喜欢开源
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-cloudstack-error-across" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/03/13/cloudstack-error-across/" class="article-date">
+  	<time datetime="2014-03-13T15:49:33.000Z" itemprop="datePublished">3月 13 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CloudStack-errorlog/">CloudStack-errorlog</a>
+  </div>
+
+      
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cloudstack 4.2.1-无法创建vm
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.今天创建vm,抛出以下异常<br>通过以下方法可以解决<br><a id="more"></a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div></pre></td><td class="code"><pre><div class="line">2014-03-13 16:15:31,228 DEBUG [cloud.storage.VolumeManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Checking if we need to prepare 2 volumes for VM[User|DSJAppServer01]</div><div class="line">2014-03-13 16:15:31,248 DEBUG [storage.image.TemplateDataFactoryImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) template 290 is already in store:2, type:Image</div><div class="line">2014-03-13 16:15:31,274 DEBUG [storage.datastore.PrimaryDataStoreImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Not found (templateId:290poolId:23) in template_spool_ref, persisting it</div><div class="line">2014-03-13 16:15:31,293 DEBUG [storage.image.TemplateDataFactoryImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) template 290 is already in store:23, type:Primary</div><div class="line">2014-03-13 16:15:31,295 DEBUG [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Found template 290-2-d3ccfe00-e08a-3a52-86f1-e19c4e26f2a7 in storage pool 23 with VMTemplateStoragePool id: 223</div><div class="line">2014-03-13 16:15:31,307 DEBUG [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Acquire lock on VMTemplateStoragePool 223 with timeout 3600 seconds</div><div class="line">2014-03-13 16:15:31,314 INFO  [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) lock is acquired for VMTemplateStoragePool 223</div><div class="line">2014-03-13 16:15:31,331 DEBUG [storage.motion.AncientDataMotionStrategy] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) copyAsync inspecting src type TEMPLATE copyAsync inspecting dest type TEMPLATE</div><div class="line">2014-03-13 16:15:31,375 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 18-1940796686: Sending  { Cmd , MgmtId: 345050394595, via: 18, Ver: v1, Flags: 100111, [{"org.apache.CloudStack.storage.command.CopyCommand":{"srcTO":{"org.apache.CloudStack.storage.to.TemplateObjectTO":{"path":"template/tmpl/2/290/60539132-19a1-3dfe-b425-fdb45fd9076d.ova","origUrl":"http://172.22.2.1/inspur/inspurcloud/customvm/win200864bitnopatch.ova","uuid":"d1da06af-6ae4-4d5f-80c6-a6a6fd373311","id":290,"format":"OVA","accountId":2,"checksum":"2c609d3019b0cadf5943793f4b8edd9f","hvm":true,"displayText":"win2008 64bit without patch","imageDataStore":{"com.cloud.agent.api.to.NfsTO":{"_url":"nfs://172.22.2.1/vg02data01/icp/ss01","_role":"Image"}},"name":"290-2-d3ccfe00-e08a-3a52-86f1-e19c4e26f2a7","hypervisorType":"VMware"}},"destTO":{"org.apache.CloudStack.storage.to.TemplateObjectTO":{"origUrl":"http://172.22.2.1/inspur/inspurcloud/customvm/win200864bitnopatch.ova","uuid":"d1da06af-6ae4-4d5f-80c6-a6a6fd373311","id":290,"format":"OVA","accountId":2,"checksum":"2c609d3019b0cadf5943793f4b8edd9f","hvm":true,"displayText":"win2008 64bit without patch","imageDataStore":{"org.apache.CloudStack.storage.to.PrimaryDataStoreTO":{"uuid":"841a5ebc-f2fc-3a18-84bb-92c06dd51318","id":23,"poolType":"VMFS","host":"VMFS datastore: /INSPURXCICP/DSJ01-R02-V01","path":"/INSPURXCICP/DSJ01-R02-V01","port":0}},"name":"290-2-d3ccfe00-e08a-3a52-86f1-e19c4e26f2a7","hypervisorType":"VMware"}},"executeInSequence":true,"wait":10800}}] }</div><div class="line">2014-03-13 16:15:31,375 INFO  [agent.manager.AgentAttache] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 18-1940796686: Unable to send due to Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:31,375 DEBUG [agent.manager.AgentAttache] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 18-1940796686: Cancelling.</div><div class="line">2014-03-13 16:15:31,375 DEBUG [CloudStack.storage.RemoteHostEndPoint] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:31,375 DEBUG [storage.motion.AncientDataMotionStrategy] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) copy object failed: </div><div class="line">com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at org.apache.CloudStack.storage.RemoteHostEndPoint.sendMessage(RemoteHostEndPoint.java:104)</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyObject(AncientDataMotionStrategy.java:210)</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyAsync(AncientDataMotionStrategy.java:411)</div><div class="line">	at org.apache.CloudStack.storage.motion.DataMotionServiceImpl.copyAsync(DataMotionServiceImpl.java:55)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createBaseImageAsync(VolumeServiceImpl.java:440)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createVolumeFromTemplateAsync(VolumeServiceImpl.java:569)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.recreateVolume(VolumeManagerImpl.java:2536)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.prepare(VolumeManagerImpl.java:2592)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:889)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:31,376 DEBUG [storage.motion.AncientDataMotionStrategy] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) copy failed</div><div class="line">com.cloud.utils.exception.CloudRuntimeException: com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyObject(AncientDataMotionStrategy.java:231)</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyAsync(AncientDataMotionStrategy.java:411)</div><div class="line">	at org.apache.CloudStack.storage.motion.DataMotionServiceImpl.copyAsync(DataMotionServiceImpl.java:55)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createBaseImageAsync(VolumeServiceImpl.java:440)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createVolumeFromTemplateAsync(VolumeServiceImpl.java:569)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.recreateVolume(VolumeManagerImpl.java:2536)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.prepare(VolumeManagerImpl.java:2592)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:889)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:31,411 INFO  [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) releasing lock for VMTemplateStoragePool 223</div><div class="line">2014-03-13 16:15:31,412 WARN  [utils.db.Merovingian2] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Was unable to find lock for the key template_spool_ref223 and thread id 1577994744</div><div class="line">2014-03-13 16:15:31,412 DEBUG [cloud.storage.VolumeManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Unable to create Vol[491|vm=301|ROOT]:com.cloud.utils.exception.CloudRuntimeException: com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:31,412 INFO  [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Unable to contact resource.</div><div class="line">com.cloud.exception.StorageUnavailableException: Resource [StoragePool:23] is unreachable: Unable to create Vol[491|vm=301|ROOT]:com.cloud.utils.exception.CloudRuntimeException: com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.recreateVolume(VolumeManagerImpl.java:2544)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.prepare(VolumeManagerImpl.java:2592)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:889)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:31,425 DEBUG [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Cleaning up resources for the vm VM[User|DSJAppServer01] in Starting state</div><div class="line">2014-03-13 16:15:31,428 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 14-1829315172: Sending  { Cmd , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 100111, [{"com.cloud.agent.api.StopCommand":{"isProxy":false,"executeInSequence":true,"vmName":"i-28-301-VM","wait":0}}] }</div><div class="line">2014-03-13 16:15:31,428 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 14-1829315172: Executing:  { Cmd , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 100111, [{"com.cloud.agent.api.StopCommand":{"isProxy":false,"executeInSequence":true,"vmName":"i-28-301-VM","wait":0}}] }</div><div class="line">2014-03-13 16:15:31,429 DEBUG [agent.manager.DirectAgentAttache] (DirectAgent-431:null) Seq 14-1829315172: Executing request</div><div class="line">2014-03-13 16:15:31,429 INFO  [vmware.resource.VmwareResource] (DirectAgent-431:172.22.1.6) Executing resource StopCommand: {"isProxy":false,"executeInSequence":true,"vmName":"i-28-301-VM","wait":0}</div><div class="line">2014-03-13 16:15:31,429 DEBUG [vmware.mo.HostMO] (DirectAgent-431:172.22.1.6) find VM i-28-301-VM on host</div><div class="line">2014-03-13 16:15:31,429 INFO  [vmware.mo.HostMO] (DirectAgent-431:172.22.1.6) VM i-28-301-VM not found in host cache</div><div class="line">2014-03-13 16:15:31,429 DEBUG [vmware.mo.HostMO] (DirectAgent-431:172.22.1.6) load VM cache on host</div><div class="line">2014-03-13 16:15:31,444 INFO  [vmware.resource.VmwareResource] (DirectAgent-431:172.22.1.6) VM i-28-301-VM is no longer in vSphere</div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.manager.DirectAgentAttache] (DirectAgent-431:null) Seq 14-1829315172: Response Received: </div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.transport.Request] (DirectAgent-431:null) Seq 14-1829315172: Processing:  { Ans: , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 110, [{"com.cloud.agent.api.StopAnswer":{"vncPort":0,"result":true,"details":"VM i-28-301-VM is no longer in vSphere","wait":0}}] }</div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.manager.AgentAttache] (DirectAgent-431:null) Seq 14-1829315172: No more commands found</div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 14-1829315172: Received:  { Ans: , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 110, { StopAnswer } }</div><div class="line">2014-03-13 16:15:31,462 DEBUG [cloud.network.NetworkManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Changing active number of nics for network id=222 on -1</div><div class="line">2014-03-13 16:15:31,762 DEBUG [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Successfully released network resources for the vm VM[User|DSJAppServer01]</div><div class="line">2014-03-13 16:15:31,762 DEBUG [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Successfully cleanued up resources for the vm VM[User|DSJAppServer01] in Starting state</div><div class="line">2014-03-13 16:15:31,785 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Deploy avoids pods: [], clusters: [], hosts: [14, 15]</div><div class="line">2014-03-13 16:15:31,787 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) DeploymentPlanner allocation algorithm: com.cloud.deploy.FirstFitPlanner_EnhancerByCloudStack_a648ceb@5f712485</div><div class="line">2014-03-13 16:15:31,787 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Trying to allocate a host and storage pools from dc:2, pod:2,cluster:null, requested cpu: 12000, requested ram: 68719476736</div><div class="line">2014-03-13 16:15:31,787 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Is ROOT volume READY (pool already allocated)?: No</div><div class="line">2014-03-13 16:15:31,788 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Searching resources only under specified Pod: 2</div><div class="line">2014-03-13 16:15:31,788 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Listing clusters in order of aggregate capacity, that have (atleast one host with) enough CPU and RAM capacity under this Pod: 2</div><div class="line">2014-03-13 16:15:31,796 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Removing from the clusterId list these clusters from avoid set: []</div><div class="line">2014-03-13 16:15:31,808 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Checking resources in Cluster: 5 under Pod: 2</div><div class="line">2014-03-13 16:15:31,808 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Looking for hosts in dc: 2  pod:2  cluster:5</div><div class="line">2014-03-13 16:15:31,814 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) FirstFitAllocator has 2 hosts to check for allocation: [Host[-14-Routing], Host[-15-Routing]]</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Found 2 hosts for allocation after prioritization: [Host[-14-Routing], Host[-15-Routing]]</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Looking for speed=12000Mhz, Ram=65536</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Host name: 172.22.1.6, hostId: 14 is in avoid set, skipping this and trying other available hosts</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Host name: 172.22.1.1, hostId: 15 is in avoid set, skipping this and trying other available hosts</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Host Allocator returning 0 suitable hosts</div><div class="line">2014-03-13 16:15:31,824 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) No suitable hosts found</div><div class="line">2014-03-13 16:15:31,824 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) No suitable hosts found under this Cluster: 5</div><div class="line">2014-03-13 16:15:31,830 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Could not find suitable Deployment Destination for this VM under any clusters, returning. </div><div class="line">2014-03-13 16:15:31,830 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Searching resources only under specified Pod: 2</div><div class="line">2014-03-13 16:15:31,831 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Listing clusters in order of aggregate capacity, that have (atleast one host with) enough CPU and RAM capacity under this Pod: 2</div><div class="line">2014-03-13 16:15:31,837 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Removing from the clusterId list these clusters from avoid set: [5]</div><div class="line">2014-03-13 16:15:31,840 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) No clusters found after removing disabled clusters and clusters in avoid list, returning.</div><div class="line">2014-03-13 16:15:31,868 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) VM state transitted from :Starting to Stopped with event: OperationFailedvm's original host id: null new host id: null host id before state transition: 14</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Hosts's actual total CPU: 64000 and CPU after applying overprovisioning: 1280000</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Hosts's actual total RAM: 549746139136 and RAM after applying overprovisioning: 10994923339776</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) release cpu from host: 14, old used: 28500,reserved: 0, actual total: 64000, total with overprovisioning: 1280000; new used: 16500,reserved:0; movedfromreserved: false,moveToReserveredfalse</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) release mem from host: 14, old used: 137707388928,reserved: 0, total: 10994923339776; new used: 68987912192,reserved:0; movedfromreserved: false,moveToReserveredfalse</div><div class="line">2014-03-13 16:15:31,923 DEBUG [cloud.vm.UserVmManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Destroying vm VM[User|DSJAppServer01] as it failed to create on Host with Id:15</div><div class="line">2014-03-13 16:15:31,954 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) VM state transitted from :Stopped to Error with event: OperationFailedToErrorvm's original host id: null new host id: null host id before state transition: null</div><div class="line">2014-03-13 16:15:32,033 WARN  [apache.CloudStack.alerts] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ])  alertType:: 8 // dataCenterId:: 2 // podId:: 2 // clusterId:: null // message:: Failed to deploy Vm with Id: 301, on Host with Id: 15</div><div class="line">2014-03-13 16:15:32,136 INFO  [user.vm.DeployVMCmd] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) com.cloud.exception.InsufficientServerCapacityException: Unable to create a deployment for VM[User|DSJAppServer01]Scope=interface com.cloud.dc.DataCenter; id=2</div><div class="line">2014-03-13 16:15:32,136 INFO  [user.vm.DeployVMCmd] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Unable to create a deployment for VM[User|DSJAppServer01]</div><div class="line">com.cloud.exception.InsufficientServerCapacityException: Unable to create a deployment for VM[User|DSJAppServer01]Scope=interface com.cloud.dc.DataCenter; id=2</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:842)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:32,140 DEBUG [cloud.async.AsyncJobManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Complete async job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ], jobStatus: 2, resultCode: 530, result: Error Code: 533 Error text: Unable to create a deployment for VM[User|DSJAppServer01]</div><div class="line">2014-03-13 16:15:32,424 DEBUG [cloud.api.ApiServlet] (catalina-exec-6:null) ===START===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&response=json&listall=True&keyword=dsj&command=listVirtualMachines</div><div class="line">2014-03-13 16:15:32,467 DEBUG [cloud.api.ApiServlet] (catalina-exec-6:null) ===END===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&response=json&listall=True&keyword=dsj&command=listVirtualMachines</div><div class="line">2014-03-13 16:15:33,252 DEBUG [cloud.api.ApiServlet] (catalina-exec-1:null) ===START===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&command=queryAsyncJobResult&response=json&jobid=5fa4d6ef-5596-4043-98ac-5a4defed54ee</div><div class="line">2014-03-13 16:15:33,278 DEBUG [cloud.async.AsyncJobManagerImpl] (catalina-exec-1:null) Async job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] completed</div><div class="line">2014-03-13 16:15:33,286 DEBUG [cloud.api.ApiServlet] (catalina-exec-1:null) ===END===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&command=queryAsyncJobResult&response=json&jobid=5fa4d6ef-5596-4043-98ac-5a4defed54ee</div><div class="line">2014-03-13 16:15:39,618 DEBUG [agent.manager.AgentManagerImpl] (AgentManager-Handler-1:null) SeqA 8-147828: Processing Seq 8-147828:  { Cmd , MgmtId: -1, via: 8, Ver: v1, Flags: 11, [{"com.cloud.agent.api.ConsoleProxyLoadReportCommand":{"_proxyVmId":85,"_loadInfo":"{\n  \"connections\": []\n}","wait":0}}] }</div><div class="line">2014-03-13 16:15:39,631 DEBUG [agent.manager.AgentManagerImpl] (AgentManager-Handler-1:null) SeqA 8-147828: Sending Seq 8-147828:  { Ans: , MgmtId: 345050394595, via: 8, Ver: v1, Flags: 100010, [{"com.cloud.agent.api.AgentControlAnswer":{"result":true,"wait":0}}] }</div><div class="line">2014-03-13 16:15:41,807 DEBUG [cloud.server.StatsCollector] (StatsCollector-1:null) StorageCollector is running...</div><div class="line">2014-03-13 16:15:41,877 DEBUG [agent.transport.Request] (StatsCollector-1:null) Seq 13-1827806745: Received:  { Ans: , MgmtId: 345050394595, via: 13, Ver: v1, Flags: 10, { GetStorageStatsAnswer } }</div><div class="line">2014-03-13 16:15:41,884 INFO  [agent.manager.AgentAttache] (StatsCollector-1:null) Seq 18-1940796687: Unable to send due to Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:41,884 DEBUG [agent.manager.AgentAttache] (StatsCollector-1:null) Seq 18-1940796687: Cancelling.</div><div class="line">2014-03-13 16:15:41,884 DEBUG [CloudStack.storage.RemoteHostEndPoint] (StatsCollector-1:null) Failed to send command, due to Agent:18, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:41,884 ERROR [cloud.server.StatsCollector] (StatsCollector-1:null) Error trying to retrieve storage stats</div><div class="line">com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:18, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at org.apache.CloudStack.storage.RemoteHostEndPoint.sendMessage(RemoteHostEndPoint.java:104)</div><div class="line">	at com.cloud.server.StatsCollector$StorageCollector.run(StatsCollector.java:545)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRunAndReset(FutureTask.java:351)</div><div class="line">	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:178)</div><div class="line">	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:165)</div><div class="line">	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:267)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div></pre></td></tr></table></figure>
+
+<h3 id="解决方法">解决方法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>根据log输出判断是存储的问题,由于secondary storage在远程data vcent,log中抛出,有 lock,我们可以销毁secondary来解决这个问题.</div><div class="line"><span class="number">2.</span>销毁secondary后发现所有的模板没有了,那是因为我们的serconary在远程data vcent,我们的网络中划分了vlan,当销毁第<span class="number">2</span>个secondary的时候,system重建secondary vm后不会刷新network vlan,这时我们需要手动输入想对应的vlan即可解决问题.</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/17/cloud-templtate/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Cloudstack 4.2.1-模板注册问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/03/11/mac_route/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac add route</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cloudstack-error-across" data-title="Cloudstack 4.2.1-无法创建vm" data-url="http://cloudbps.com/2014/03/13/cloudstack-error-across/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tom.liu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

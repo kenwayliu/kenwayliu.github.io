@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Nginx生产环境调优 | 猫在云端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、内存调优
+1234567891011121314内核关于内存的选项都在/proc/sys/vm目录下.1.pdflush,用于回写内存中的脏数据到硬盘。可以通过 /proc/sys/vm/vm.dirty_background_ratio调整。首先查看这个值默认应该是10。[root@esf ~]# cat /proc/sys/vm/dirty_background_ratio10这个值是一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx生产环境调优">
+<meta property="og:url" content="http://cloudbps.com/2015/01/10/nginx_productiontun/">
+<meta property="og:site_name" content="猫在云端">
+<meta property="og:description" content="一、内存调优
+1234567891011121314内核关于内存的选项都在/proc/sys/vm目录下.1.pdflush,用于回写内存中的脏数据到硬盘。可以通过 /proc/sys/vm/vm.dirty_background_ratio调整。首先查看这个值默认应该是10。[root@esf ~]# cat /proc/sys/vm/dirty_background_ratio10这个值是一个">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx生产环境调优">
+<meta name="twitter:description" content="一、内存调优
+1234567891011121314内核关于内存的选项都在/proc/sys/vm目录下.1.pdflush,用于回写内存中的脏数据到硬盘。可以通过 /proc/sys/vm/vm.dirty_background_ratio调整。首先查看这个值默认应该是10。[root@esf ~]# cat /proc/sys/vm/dirty_background_ratio10这个值是一个">
+
+  
+    <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/缓存加速/" style="font-size: NaNpx;">缓存加速</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zipperary.com/">Zippera的Blog</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://kisspuppet.com/">Puppet运维自动化技术分享</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xuchanggang.cn/">没有伞的孩子必须努力奔跑</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bubbyroom.com/">守住每一天</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://opython.com/">Python自动化运维</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.aikaiyuan.com/">爱开源</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://noops.me/">小米运维</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					喜欢交流,喜欢开源
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-nginx_productiontun" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/10/nginx_productiontun/" class="article-date">
+  	<time datetime="2015-01-10T04:19:00.000Z" itemprop="datePublished">1月 10 2015</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Nginx/">Nginx</a>
+  </div>
+
+      
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nginx生产环境调优
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、内存调优">一、内存调优</h4>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">内核关于内存的选项都在/proc/sys/vm目录下.</div><div class="line"><span class="number">1</span>.pdflush,用于回写内存中的脏数据到硬盘。可以通过 /proc/sys/vm/vm.dirty_background_ratio调整。</div><div class="line">首先查看这个值默认应该是<span class="number">10</span>。</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_background_ratio</span></div><div class="line"><span class="number">10</span></div><div class="line">这个值是一个阀值,说明如果内存中的脏数据达到系统总内存的<span class="number">10</span>%时,那么pdflush进程就会启动,将内存中的脏数据写回硬盘.这个值可适当调高.可获得更快的写入速度.</div><div class="line"><span class="number">2</span>.swappiness选项</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/swappiness</span></div><div class="line"><span class="number">60</span></div><div class="line">swappiness表示使用swap分区的使用程度,可以适当调整swappiness=<span class="number">0</span>的时候表示尽可能使用物理内存swap空间.swappiness=<span class="number">100</span>积极使用swap.</div><div class="line"><span class="number">3</span>.dirty_ratio</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_ratio</span></div><div class="line"><span class="number">40</span></div><div class="line">dirty_ratio的值是数据写进内存的阀值,<span class="number">40</span>%是指当系统内存已经缓存了<span class="number">40</span>%的数据以后,就不再往内存中缓存数据了.</div></pre></td></tr></table></figure>
+
+<p><a id="more"></a></p>
+<h4 id="二、磁盘I/O调优">二、磁盘I/O调优</h4>
+<ul>
+<li>Linux磁盘I/O调优<ul>
+<li>概述</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>   磁盘调优目录：/sys/block</div><div class="line"><span class="number">2.</span>   磁盘调优均是调内核参数，要求安装kernel-doc包，</div><div class="line"><span class="number">3.</span>   调预先读请求量（默认为<span class="number">128</span>kb）</div><div class="line"><span class="comment"># blockdev –getra /dev/sda</span></div><div class="line"><span class="comment"># blockdev –setra 512 /dev/sda</span></div><div class="line">实际修改/sys/block/sda/queue/read_ahead_kb=<span class="number">256</span>kb；如果读情况多则将此参数调大一点，如写请求读，则将此参数调小一点</div><div class="line"><span class="number">4.</span>   调磁盘队列：队列长则处理快，提升硬盘的吞吐量，但会消耗更大的内存</div><div class="line">Queue length：/sys/block/sda/queue/nr_requests</div><div class="line"><span class="comment"># cat /sys/block/sda/queue/nr_requests</span></div><div class="line"><span class="number">512</span></div><div class="line"><span class="comment">#默认128，没有单位</span></div><div class="line">二）、 磁盘I/O的<span class="number">4</span>种调度算法</div><div class="line"></div><div class="line"><span class="number">1.</span>   CFQ(完全公平排队I/O调度程序)(elevator=cfq)</div><div class="line">特点:</div><div class="line">  这是默认算法，对于通用服务器来说通常是最好的选择。它试图均匀地分布对I/O带宽的访问。是deadline和anticipatory调度器的折中方案.</div><div class="line">  CFQ对于多媒体应用(video,audio)和桌面系统是最好的选择.</div><div class="line">  CFQ赋予I/O请求一个优先级,而I/O优先级请求独立于进程优先级,高优先级的进程的读写不能自动地继承高的I/O优先级.</div><div class="line">  CFQ基于<span class="number">64</span>位的队列请求,使用的轮询的方法处理队列.</div><div class="line">调优参数：</div><div class="line"><span class="comment">#  /sys/block/sda/queue/iosched/queued：轮询时每次处理的最大请求数</span></div><div class="line"><span class="comment">#  /sys/block/sda/queue/iosched/quantum：每隔多少个请求数做一次轮询</span></div><div class="line">cfq调优工具ionice</div><div class="line">ionice可以更改任务的类型和优先级,不过只有cfq调度程序可以用ionice.</div><div class="line">有三个例子说明ionice的功能:</div><div class="line"> 采用cfq的实时调度（实时调度：c1）,优先级为<span class="number">7</span>（数字越低优先级越高）</div><div class="line"><span class="comment"># ionice -c1 -n7 -ptime dd if=/dev/sda1 f=/tmp/test bs=2M count=300&</span></div><div class="line"> 采用缺省的磁盘I/O调度（轮询调度：c2）,优先级为<span class="number">3</span></div><div class="line"><span class="comment"># ionice -c2 -n3 -ptime dd if=/dev/sda1 f=/tmp/test bs=2M count=300&</span></div><div class="line"> 采用空闲的磁盘调度（idle调度：c3）,优先级为<span class="number">0</span></div><div class="line"><span class="comment"># ionice -c3 -n0 -ptime dd if=/dev/sda1 f=/tmp/test bs=2M count=300&</span></div><div class="line"><span class="comment">#ionice的三种调度方法,实时调度最高,其次是缺省的I/O调度,最后是空闲的磁盘调度.</span></div><div class="line">ionice的磁盘调度优先级有<span class="number">8</span>种,最高是<span class="number">0</span>,最低是<span class="number">7.</span></div><div class="line">注意,磁盘调度的优先级与进程nice的优先级没有关系.一个是针对进程I/O的优先级,一个是针对进程CPU的优先级.</div><div class="line"><span class="number">2.</span>   Deadline（截止时间调度程序）(elevator=deadline)：</div><div class="line">特点:</div><div class="line">  Deadline确保了在一个截止时间内服务请求,这个截止时间是可调整的,而默认读期限短于写期限.这样就防止了写操作因为不能被读取而饿死的现象.</div><div class="line">  这个算法试图把每次请求的延迟降至最低。该算法重排了请求的顺序来提高性能。可以调队列的过期的读写过程，如 read_expire 和 write_expire 二个参数来控制多久内一定要读到数据，超时就放弃排序。</div><div class="line">  比较合适小文件。还可以使用打开 front_merges 来进行合并邻近文件。Deadline对数据库环境(ORACLE RAC,MYSQL等)是最好的选择.</div><div class="line">调优：</div><div class="line"><span class="comment"># echo deadline &gt;/sys/block/sda/queue/scheduler</span></div><div class="line"><span class="comment"># more /sys/block/sda/queue/scheduler</span></div><div class="line"> noop anticipatory [deadline] cfq</div><div class="line"><span class="comment"># ls /sys/block/sda/queue/iosched/</span></div><div class="line">fifo_batch  front_merges  read_expire  write_expire  writes_starved</div><div class="line"><span class="comment"># cat iosched/read_expire</span></div><div class="line"><span class="number">500</span>    <span class="comment">#默认500ms</span></div><div class="line"><span class="comment"># cat iosched/write_expire</span></div><div class="line"><span class="number">5000</span>   <span class="comment">#默认5000ms</span></div><div class="line"><span class="comment"># cat iosched/front_merges</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="comment">#默认为1，请求整合，新的请求和之前请求有关联，则优先处理该请求,对IO性能没有影响，但优化了磁盘处理。</span></div><div class="line"><span class="number">3.</span>   Anticipatory（预料I/O调度程序）(elevator=<span class="keyword">as</span>):</div><div class="line">特点：</div><div class="line">  预想调度算法。优化完成率，改善读请求。</div><div class="line">  本质上与Deadline一样,但在最后一次读操作后，要等待<span class="number">6</span>ms才能继续进行对其它I/O请求进行调度。可以从应用程序中预订一个新的读请求,改进读 操作的执行，但以一些写操作为代价，它会在每个<span class="number">6</span>ms中插入新的I/O操作,而会将一些小写入流合并成一个大写入流，用写入延时换取最大的写入吞吐量。</div><div class="line">  AS适合于写入较多的环境,比如文件服务器；适合大文件处理，适合web server等。AS对数据库环境表现很差。</div><div class="line">调优：</div><div class="line"><span class="comment"># echo “anticipatory”&gt;/sys/block/sda/queue/scheduler</span></div><div class="line"><span class="comment"># more iosched/antic_expire</span></div><div class="line"><span class="number">6</span>       <span class="comment">#默认为6秒</span></div><div class="line"><span class="comment"># more /sys/block/sda/queue/iosched/read_expire</span></div><div class="line"><span class="number">125</span>      <span class="comment">#读的最大队列时间</span></div><div class="line"><span class="comment"># more /sys/block/sda/queue/iosched/write_expire</span></div><div class="line"><span class="number">250</span>      <span class="comment">#写的最大队列时间</span></div><div class="line">注：测试时一定要清空缓存</div><div class="line"><span class="comment"># free –m    #查看缓存</span></div><div class="line">             total    used   free   shared    buffers     cached</div><div class="line">Mem:        <span class="number">4054</span>    <span class="number">506</span>   <span class="number">3548</span>   <span class="number">0</span>        <span class="number">140</span>        <span class="number">256</span></div><div class="line">-/+ buffers/cache:      <span class="number">108</span>   <span class="number">3945</span></div><div class="line">Swap:         <span class="number">8189</span>   <span class="number">0</span>    <span class="number">8189</span></div><div class="line">测试：</div><div class="line"><span class="comment"># sysctl -w vm.drop_caches=3   #清空缓存</span></div><div class="line"><span class="comment"># rpm –ivh elevator-test-0.1-3.i386.rpm  #安装测试软件</span></div><div class="line"><span class="comment"># dd if=/dev/urandom of=/root/bigfile bs=1M count=100</span></div><div class="line"><span class="comment"># watch –n 1 ls –lh /root/bigfile   #每隔一秒查写入bigfile的数据量</span></div><div class="line"> 默认调度类型为cfq下，测试读数据速度（测试时要求清空缓存）</div><div class="line"><span class="comment"># cat /sys/block/sda/queue/scheduler</span></div><div class="line">noop anticipatory deadline [cfq]</div><div class="line">et_start reader /root/bigfile</div><div class="line">Launching</div><div class="line">Reading <span class="number">25600</span> pages</div><div class="line">Read <span class="number">20000</span> pages</div><div class="line">real    <span class="number">0</span>m1<span class="number">.552</span>s</div><div class="line">user    <span class="number">0</span>m0<span class="number">.011</span>s</div><div class="line">sys     <span class="number">0</span>m0<span class="number">.147</span>s</div><div class="line"> 将调度类型改为anticipatory，测试读数据速度（测试时要求清空缓存）</div><div class="line"><span class="comment"># echo “anticipatory”&gt;/sys/block/sda/queue/scheduler</span></div><div class="line">noop anticipatory deadline [anticipatory]</div><div class="line"><span class="comment"># cat /sys/block/sda/queue/iosched/antic_expire</span></div><div class="line"><span class="number">12</span>    <span class="comment">#该值默认为6，为提高速度，改成12</span></div><div class="line">et_start reader /root/bigfile</div><div class="line">Launching</div><div class="line">Reading <span class="number">25600</span> pages</div><div class="line">Read <span class="number">20000</span> pages</div><div class="line">real    <span class="number">0</span>m1<span class="number">.456</span>s</div><div class="line">user    <span class="number">0</span>m0<span class="number">.007</span>s</div><div class="line">sys     <span class="number">0</span>m0<span class="number">.144</span>s</div><div class="line"> 结论：很明显读的数度提高了。</div><div class="line"><span class="number">4.</span>   NOOP（电梯式调度程序）(elevator=noop):</div><div class="line">特点：</div><div class="line">  不做任何调优，主要用于节省CPU资源。</div><div class="line">  Noop调度算法指的是当请求被存储到队列并交由I/O子系统处理时由磁盘硬件对其进行优化。该算法一般只对一些特定的硬件（例如RAM disk和TCQ disk等）。</div><div class="line">  Noop对于I/O不那么操心，对所有的I/O请求都用FIFO队列形式处理，默认认为 I/O不会存在性能问题。这也使得CPU也不用那么操心</div><div class="line">三）、 I/O调度算法使用建议</div><div class="line"></div><div class="line"><span class="number">1.</span>   Deadline I/O scheduler</div><div class="line">   在这个中 deadline 调度算法通过降低性能而获得更短的等待时间，它使用轮询的调度器,简洁小巧,提供了最小的读取延迟</div><div class="line">   和尚佳的吞吐量,特别适合于读取较多的环境(比如数据库,Oracle <span class="number">10</span>G 之类).</div><div class="line"><span class="number">2.</span>   Anticipatory I/O scheduler</div><div class="line">   anticipatory 算法通过增加等待时间来获得更高的性能，假设一个块设备只有一个物理查找磁头(例如一个单独的SATA硬盘),将多个随机的小写入流合并成一个大写入流 (相当于给随机读写变顺序读写), 使用这个原理来使用读取写入的延时换取最大的读取写入吞吐量.适用于大多数环境,特别是读取写入较多的环境,比如文件服务器,Web 应用,App等应用我们可以采纳<span class="keyword">as</span>调度.后面我会教大家怎么调这个的合并的等待时间。</div><div class="line"><span class="number">3.</span>   CFQ I/O scheduler</div><div class="line">这个是 对所有因素也都做了折中而尽量获得公平性,使用QoS策略为所有任务分配等量的带宽,避免进程被饿死并实现了较低的延迟,可以认为是上述两种调度器的折中.适用于有大量进程的多用户系统。</div></pre></td></tr></table></figure>
+
+<h4 id="三、_sysctl-conf参数的调整">三、 sysctl.conf参数的调整</h4>
+<ul>
+<li>优化TIME_WAIT</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">tcp连接断开后，会以TIME_WAIT状态保留一定的时候，然后才会释放端口。当并发很多的时候，就会产生大量的TIME_WAIT，无法及时断开，占用大量的端口和服务器资源。优化TCP的内核参数，及时处理TIME_WAIT</div><div class="line">查看TIME_WAIT的数量</div><div class="line"># netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’</div><div class="line">优化</div><div class="line"># vim /etc/sysctl.conf</div><div class="line">net.ipv4.tcp_syncookies = 1     //开户SYN Cookies，当出现等待队列溢出时，启用cookies来处理，防范少量SYN攻击</div><div class="line">net.ipv4.tcp_tw_reuse = 1       //开户重用，允许TIME_WAIT sockets重新用于新的TCP连接</div><div class="line">net.ipv4.tcp_tw_recycle = 1     //开户TCP连接中TIME_WAIT sockets的快速回收</div><div class="line">net.ipv4.tcp_fin_timeout = 30       //修改TIMEOUT的时间</div><div class="line">net.ipv4.tcp_keepalive_time = 1200      //当keepalive起作用的时候，TCP发送keepalive消息的频度，缺少是2小时，改为20分钟</div><div class="line">net.ipv4.ip_local_port_range = 10000 65000      //修改端口范围，允许更多的连接</div><div class="line">net.ipv4.tcp_max_syn_backlog = 8192     //SYN队列的长度，默认为1024，加大队列长度为8192，以容纳更多等待连接的网络连接</div><div class="line">net.ipv4.tcp_max_tw_buckets = 5000      //系统同时保持TIME_WAIT的最大数量，如果超过这个数字，TIME_WAIT将立即被清除</div><div class="line">net.core.netdev_max_backlog = 32768     //每个网络接口接收数据包的速率比内核处理这些包的速率快时，允许送到队列的数据包的最大数目。</div><div class="line">net.core.somaxconn = 32768      //web应用中listen函数的backlog默认会给我们内核参数的net.core.somaxconn限制到128，而nginx定义的NGX_LISTEN_BACKLOG默认为511，所以有必要调整这个值。</div><div class="line">net.ipv4.tcp_wmem = 8192 436600 873200  //TCP写buffer</div><div class="line">net.ipv4.tcp_rmem  = 32768 436600 873200    //TCP读buffer</div><div class="line">net.inet.tcp.sendspace=65536  //最大的待发送TCP数据缓冲区空间</div><div class="line">net.inet.tcp.recvspace=65536  //最大的接受TCP缓冲区空间</div><div class="line">net.inet.udp.sendspace=65535  //最大的接受UDP缓冲区大小</div><div class="line">net.inet.udp.maxdgram=65535  //最大的发送UDP数据缓冲区大小</div><div class="line">net.local.stream.sendspace=65535  //本地套接字连接的数据发送空间</div><div class="line">最后使用命令sysctl让其生效</div><div class="line"># sysctl -p</div></pre></td></tr></table></figure>
+
+<h4 id="四、_网络调优">四、 网络调优</h4>
+<ul>
+<li>双网卡绑定以提高带宽</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>安装软件</div><div class="line">apt-get install ifenslave</div><div class="line"><span class="number">2.</span>修改配置文件</div><div class="line">/etc/network/interfaces</div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">iface eth1 inet dhcp</div><div class="line">auto bond0</div><div class="line">iface bond0 inet static</div><div class="line">address <span class="number">64.0</span><span class="number">.177</span><span class="number">.20</span></div><div class="line">netmask <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></div><div class="line">gateway <span class="number">64.0</span><span class="number">.177</span><span class="number">.254</span></div><div class="line">up ifenslave bond0 eth0 eth1</div><div class="line">down ifenslave -d bond0 eth0 eth1</div><div class="line"><span class="number">3.</span>加载模块</div><div class="line">vi /etc/modules</div><div class="line">bonding</div></pre></td></tr></table></figure>
+
+<h4 id="五、_nginx调优">五、 nginx调优</h4>
+<ul>
+<li>配置文件调优</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">worker_processes <span class="number">8</span>;  //nginx进程数，建议按照cpu数目来指定，一般为它的倍数。</div><div class="line">worker_cpu_affinity <span class="number">00000001</span> <span class="number">00000010</span> <span class="number">00000100</span> <span class="number">00001000</span> <span class="number">00010000</span> <span class="number">00100000</span> <span class="number">01000000</span> <span class="number">10000000</span>;  //为每个进程分配cpu，上例中将<span class="number">8</span>个进程分配到<span class="number">8</span>个cpu，当然可以写多个，或者将一个进程分配到多个cpu。</div><div class="line">worker_rlimit_nofile <span class="number">102400</span>;  //这个指令是指当一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（ulimit -n）与nginx进程数相除，但是nginx分配请求并不是那么均匀，所以最好与ulimit -n的值保持一致。</div><div class="line">use epoll;   //使用epoll的I/O模型，这个不用说了吧.</div><div class="line">worker_connections <span class="number">102400</span>;   //每个进程允许的最多连接数，理论上每台nginx服务器的最大连接数为worker_processes*worker_connections。</div><div class="line">keepalive_timeout <span class="number">60</span>;  //keepalive超时时间。</div><div class="line">limit_rate_after <span class="number">2</span>m;</div><div class="line">                                                //限制速度，当用户请求的文件超过<span class="number">2</span>M的时候，开始限速，限制为<span class="number">128</span>k</div><div class="line">limit_rate  <span class="number">128</span>k;</div><div class="line">二）、安装插件调优</div><div class="line"></div><div class="line">安装Google插件，以实现加速内存的分配和回收</div><div class="line">TCMallocde的全称为Thread-Caching Malloc，是谷歌开发的开源工具google-perftools中得一个成员。与标准的glibc库的Malloc相比，TCMalloc库在内存 分配效率和速度上要高很多，这在很大程度上提高了服务器在高并发情况下的性能，从而降低了系统的负载。</div><div class="line">要安装TCMalloc库，需要安装libunwind（<span class="number">32</span>位操作系统不需要安装）和google-perftools两个软件包，libunwind库位基于<span class="number">64</span>位cpu和操作系统的程序提供了基本函数调用链和函数调用寄存器功能。</div><div class="line"><span class="number">1</span>、安装libunwind库</div><div class="line">可以从http://mirror.yongbok.net/nongnu/libunwind/ 下载相应的版本</div><div class="line">下载地址：http://mirror.yongbok.net/nongnu/libunwind/libunwind-<span class="number">0.99</span>.tar.gz</div><div class="line"><span class="comment"># tar xnf libunwind-0.99.tar.gz</span></div><div class="line"><span class="comment"># cd libunwind-0.99/</span></div><div class="line"><span class="comment"># CFLAGS=-fPIC ./configure</span></div><div class="line"><span class="comment"># make CFLAGS=-fPIC</span></div><div class="line"><span class="comment"># make CFLAGS=-fPIC install</span></div><div class="line"><span class="number">2</span>、安装google-perftools</div><div class="line">可从http://code.google.com/p/gperftools/ 下载相应的版本。</div><div class="line">下载地址：http://gperftools.googlecode.com/files/google-perftools- <span class="number">1.9</span>.tar.gz  最新版：http://gperftools.googlecode.com/files/gperftools-<span class="number">2.0</span>.tar.gz 这里用的google-perftools-<span class="number">1.9</span>.tar.gz</div><div class="line"><span class="comment"># tar xvf google-perftools-1.9.tar.gz</span></div><div class="line"><span class="comment"># cd google-perftools-1.9/</span></div><div class="line"><span class="comment"># ./configure</span></div><div class="line"><span class="comment"># make && make install</span></div><div class="line"><span class="comment"># echo “/usr/local/lib“ &gt;&gt; /etc/ld.so.conf.d/usr_local_lib.conf</span></div><div class="line"><span class="comment"># ldconfig</span></div><div class="line">至此google-perftools安装完成</div><div class="line"><span class="number">3</span>、重新编译nginx</div><div class="line">为了使nginx支持google-perftools，需要在安装过程中添加”–<span class="keyword">with</span>-google_perftools_module”选项重新编译nginx。安装如下：</div><div class="line"><span class="comment"># ./configure –with-google_perftools_module –with-http_stub_status_module –with-http_ssl_module –prefix=/usr/local/webserver/nginx</span></div><div class="line"><span class="comment"># make</span></div><div class="line"><span class="comment"># make install</span></div><div class="line">到这里nginx安装完成</div><div class="line"><span class="number">4</span>、为google-perftools添加线程目录</div><div class="line">创建一个线程目录，这里将文件放在/tmp/tcmalloc下。</div><div class="line"><span class="comment"># mkdir /tmp/tcmalloc</span></div><div class="line"><span class="comment"># chmod 0777 /tmp/tcmalloc</span></div><div class="line"><span class="number">5</span>、修改nginx主配置文件</div><div class="line">修改nginx.conf文件，在pid这行的下面添加如下代码：</div><div class="line">google_perftools_profiles    /tmp/tcmalloc;</div><div class="line">接着，重启nginx即可完成google-perftools的加载。</div><div class="line"><span class="number">6</span>、验证运行状态</div><div class="line">为了验证google-perftools已经正常加载，可通过如下命令查看:</div><div class="line">lsof -n | grep tcmalloc</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/10/cdn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          CDN介绍(来自又拍云存储)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/06/08/cloudstack_zone/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cloudstack 4.2.1+vMware Hypervisor 重装</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="nginx_productiontun" data-title="Nginx生产环境调优" data-url="http://cloudbps.com/2015/01/10/nginx_productiontun/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tom.liu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

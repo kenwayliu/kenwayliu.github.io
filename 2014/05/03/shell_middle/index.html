@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>运维常用shell | 猫在云端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.显示消耗内存/CPU最多的10个进程ps aux | sort -nk +4 | tail -10ps aux | sort -nk +3 | tail -10
+2.查看Apache的并发请求数及其TCP连接状态netstat -n | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;另一种方法：netstat -a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维常用shell">
+<meta property="og:url" content="http://cloudbps.com/2014/05/03/shell_middle/">
+<meta property="og:site_name" content="猫在云端">
+<meta property="og:description" content="1.显示消耗内存/CPU最多的10个进程ps aux | sort -nk +4 | tail -10ps aux | sort -nk +3 | tail -10
+2.查看Apache的并发请求数及其TCP连接状态netstat -n | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;另一种方法：netstat -a">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运维常用shell">
+<meta name="twitter:description" content="1.显示消耗内存/CPU最多的10个进程ps aux | sort -nk +4 | tail -10ps aux | sort -nk +3 | tail -10
+2.查看Apache的并发请求数及其TCP连接状态netstat -n | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;另一种方法：netstat -a">
+
+  
+    <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/缓存加速/" style="font-size: NaNpx;">缓存加速</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zipperary.com/">Zippera的Blog</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://kisspuppet.com/">Puppet运维自动化技术分享</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xuchanggang.cn/">没有伞的孩子必须努力奔跑</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bubbyroom.com/">守住每一天</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://opython.com/">Python自动化运维</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.aikaiyuan.com/">爱开源</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://noops.me/">小米运维</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					喜欢交流,喜欢开源
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-shell_middle" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/05/03/shell_middle/" class="article-date">
+  	<time datetime="2014-05-03T14:16:33.000Z" itemprop="datePublished">5月 3 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Shell/">Shell</a>
+  </div>
+
+      
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      运维常用shell
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.显示消耗内存/CPU最多的10个进程<br><code>ps aux | sort -nk +4 | tail -10</code><br><code>ps aux | sort -nk +3 | tail -10</code></p>
+<p>2.查看Apache的并发请求数及其TCP连接状态<br><code>netstat -n | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</code><br>另一种方法：<br><code>netstat -ant|awk &#39;/^tcp/ {print awk $NF}&#39;|sort|uniq -c|sort -nr</code><br><a id="more"></a></p>
+<p>3.找出自己最常用的10条命令及使用次数（或求访问最多的ip数）<br><code>sed -e &#39;s/| //n/g&#39; ~/.bash_history |cut -d  &#39;&#39; -f 1 | sort | uniq -c | sort -nr | head</code></p>
+<p>4.日志中第10个字段表示连接时间，求平均连接时间<br><code>cat access_log |grep “connect cbp” |awk` ‘BEGIN{sum=0;count=0;}{sum+=$10;count++;}END{printf(“sum=%d,count=%d,avg=%f/n”,sum,count,sum/count)}’</code></p>
+<p>5.lsof命令</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">lsof</span> <span class="tag">abc</span><span class="class">.txt</span> 显示开启文件<span class="tag">abc</span><span class="class">.txt</span>的进程</div><div class="line"><span class="tag">lsof</span> <span class="tag">-i</span> <span class="pseudo">:22</span> 知道22端口现在运行什么程序</div><div class="line"><span class="tag">lsof</span> <span class="tag">-c</span> <span class="tag">abc</span> 显示<span class="tag">abc</span>进程现在打开的文件</div><div class="line"><span class="tag">lsof</span> <span class="tag">-p</span> 12  看进程号为12的进程打开了哪些文件</div></pre></td></tr></table></figure>
+
+<p>6.杀掉一个程序的所有进程</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">pkill</span> -<span class="number">9</span> httpd</div><div class="line">killall -<span class="number">9</span> httpd</div></pre></td></tr></table></figure>
+
+<p>注意尽量不用-9，数据库服务器上更不能轻易用kill，否则造成重要数据丢失后果将不堪设想。</p>
+<p>7.rsync命令（要求只同步某天的压缩文件，而且远程目录保持与本地目录一致）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/rsync -azvR –password-file=<span class="regexp">/etc/rsync</span>.secrets `find . -name “*<span class="variable">$yesterday</span>.gz”  -type f ` storage<span class="variable">@192</span>.<span class="number">168.2</span>.<span class="number">23</span><span class="symbol">:</span><span class="symbol">:logbackup/</span><span class="number">13.21</span>/</div></pre></td></tr></table></figure>
+
+<p>8.把目录下<em>.sh文件改名为</em>.SH</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">find</span> .  -name <span class="string">"*.sh"</span> | sed  <span class="string">'s//(.*/)/.sh/mv /0 /1.SH/'</span> |<span class="keyword">sh</span></div><div class="line"><span class="keyword">find</span> .  -name <span class="string">"*.sh"</span> | sed  <span class="string">'s//(.*/)/.sh/mv & /1.SH/'</span>|<span class="keyword">sh</span>  （跟上面那个效果一样）</div></pre></td></tr></table></figure>
+
+
+<p>9.ssh执行远程的程序，并在本地显示<br><code>ssh -n -l zouyunhao 192.168.2.14 &quot;ls -al /home/zouyunhao&quot;</code></p>
+<ol>
+<li>直接用命令行修改密码<br><code>echo &quot;zouyunhaoPassword&quot; |passwd –stdin zouyunhao</code></li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen</div><div class="line">ssh-copy-id -i ~<span class="regexp">/.ssh/id</span>_rsa.pub user<span class="variable">@remoteServer</span></div></pre></td></tr></table></figure>
+
+
+<p>11.以http方式共享当前文件夹的文件<br><code>$ python -m SimpleHTTPServer</code><br>在浏览器访问<a href="http://IP:8000/即可下载当前目录的文件。" target="_blank" rel="external">http://IP:8000/即可下载当前目录的文件。</a></p>
+<p>12.shell段注释<br><code>:&lt;&lt;&#39;echo hello,world!&#39;</code></p>
+<p>13.查看服务器序列号<br><code>dmidecode |grep &quot;Serial Number&quot;</code><br>（查看机器其他硬件信息也可用这个命令）</p>
+<p>14.查看网卡是否有网线物理连接<br><strong>监控网卡变化</strong> <code>/sbin/mii-tool -m</code><br><strong>重启单独网卡</strong> <code>ifup eth* &amp;&amp; ifdown eth*</code></p>
+<p>15、扫描开放端口<br><code>nmap 127.0.0.1 |grep -w 443  #-w精确匹配</code></p>
+<p>下面我会陆续添加一些在实际工作中用到的其他不错的shell命令~~~<br>1、将大写文件名改为小写文件名<br><code>for i in `find ./ -type f -name &quot;[A-Z]*&quot;| xargs -0`; do mv -f $i `echo $i | tr A-Z a-z`; done</code></p>
+<p>2、zat查看压缩文件<br><code>zcat install.log.tgz |grep -a ssh #过滤必须加上-a参数</code></p>
+<p>3、杀掉程序所有进程，跟上面pkill功能一样<br><code>pgrep httpd|xargs kill -9 #pgrep过滤出进程号再kill</code></p>
+<p>4、快速备份一个文件<br><code>cp filename{,.bak}  #filename{,.bak}</code> <strong>这一段会被展开成filename filename.bak再传给cp</strong></p>
+<p>5、重命名文件：<br><code>ls|xargs -t -i mv {} {}.bak</code> <strong>所有文件添加.bak后缀</strong><br><code>ls |sed &#39;s/.bak$//&#39;|xargs -I {} mv {}.bak {}</code> <strong>去除所有文件.bak后缀，上一个命令的反向恢复</strong><br><code>for i in</code>ls<code>;do mv $i ${i%.*};done</code> <strong>同上,去除后缀名,利用变量模式匹配运算符</strong><br><code>find ./ -name &quot;*.py&quot; -exec mv {} {}.bak \;</code> <strong>将所有.py后缀文件，加上.bak后缀</strong><br><code>rename .sh .py *.sh</code> <strong>将所有.sh后缀重命名为.py</strong><br><code>for i in `ls *.sh`;do mv $i `echo $i|awk -F \. &#39;{print $1}&#39;`.py;done</code> <strong>同上</strong></p>
+<p>6、tar包不解压统计大小：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">tar</span> tvf nrpe-<span class="number">2</span>.<span class="number">8</span>.<span class="number">1</span>.tar.gz | awk <span class="string">'{total+=<span class="variable">$3</span>}END{print total}'</span></div><div class="line">tar tvf nrpe-<span class="number">2</span>.<span class="number">8</span>.<span class="number">1</span>.tar.gz | awk <span class="string">'{total+=<span class="variable">$3</span>}END{print total/1024}'</span>  <span class="comment">#kb大小</span></div></pre></td></tr></table></figure>
+
+<p>7、将两个文件交叉显示</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">paste a.txt b.txt|tr <span class="string">"\t"</span> <span class="string">"\n"</span></div><div class="line">paste a.txt b.txt|xargs -n1</div></pre></td></tr></table></figure>
+
+<p>8、使用xargs分析单词出现的频率:<br><code>cat file.txt |xargs -n1|tr A-Z a-z|sed -e &#39;s/\.//g&#39; -e &#39;s/\,//g&#39; -e &#39;s/ /\n/g&#39;|sort|uniq -c|sort -nr</code><br>解释：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">xargs -n1:列出文件, 每行一个单词</div><div class="line">tr A-Z a-z:将字符转换为小写</div><div class="line">sed <span class="operator">-e</span> <span class="string">'s/\.//g'</span> <span class="operator">-e</span> <span class="string">'s/\,//g'</span> <span class="operator">-e</span> <span class="string">'s/ /\n/g'</span>: 过滤掉句号和逗号,单词间的空格修改为换行</div><div class="line">另一种空格转换行方法：直接使用换行符</div><div class="line"> <span class="string">'s/ /\      </span></div><div class="line">/g'</div><div class="line">sort|uniq -c|sort -nr:排序，计数，再排序</div></pre></td></tr></table></figure>
+
+<p>不使用xargs统计：<br><code>sed -e &#39;s/\.//g&#39; -e &#39;s/\,//g&#39; -e &#39;s/ /\n/g&#39; README |tr &#39;A-Z&#39; &#39;a-z&#39;|sort|uniq -c|sort -nr</code></p>
+<p>9、xargs拷贝文件到另一个目录中：</p>
+<p><code>ls . | xargs -i -t cp ./{} /data/backup</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">t 是 <span class="string">"verbose"</span> (输出命令行到stderr) 选项.</div><div class="line"><span class="pp">-i 是"替换字符串"选项</span>.</div><div class="line"><span class="tuple">{}</span> 是输出文本的替换点.</div><div class="line">这与在<span class="string">"find"</span>命令中使用<span class="tuple">{}</span>的情况很相像.</div><div class="line">列出当前目录下的所有文件(ls .),将 <span class="string">"ls"</span> 的输出作为参数传递到 <span class="string">"xargs"</span>(-i -t 选项)中,然后拷贝(cp)这些参数(<span class="tuple">{}</span>)到一个新目录中(/data/backup).等价cp * /data/backup,除非有文件名中嵌入了<span class="string">"空白"</span>字符.</div></pre></td></tr></table></figure>
+
+<p>10、利用xargs kill进程<br><code>ps ax | grep &quot;httpd&quot; | awk &#39;{print $1}&#39; | xargs -i kill {} 2&amp;&gt;/dev/null</code></p>
+<p>11、重复字符序列中除去除第一个字符以外的所有字符，例如aaa,多个空格</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tr <span class="operator">-s</span> <span class="string">'a'</span> &lt;test.txt <span class="comment">#多个a连续，只保留第一个</span></div><div class="line">tr <span class="operator">-s</span> <span class="string">' '</span> &lt;test.txt <span class="comment">#字符间多个空格，只保留一个</span></div></pre></td></tr></table></figure>
+
+<p>12、去除windows下换行符^M</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">tr -d <span class="string">"\r"</span> &lt;file.txt &gt;out.txt</div><div class="line">tr -d <span class="string">"\015"</span> &lt;file.txt &gt;out.txt <span class="comment">#^M八进制形式是 015</span></div><div class="line">strings file.txt &gt;out.txt</div><div class="line">sed -i <span class="string">'s/^M//g'</span> file.txt  <span class="comment">#^M不是shift+^再加上M,应该是ctrl+v加上ctrl+m</span></div><div class="line">vi文件下执行<span class="symbol">:%s/^M//g</span>替换为空</div><div class="line">dos2unix file.txt</div></pre></td></tr></table></figure>
+
+<p>13、过滤文件内电子邮箱和网站地址<br>过滤邮箱(只显示过滤文本)：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#egrep -<span class="keyword">o</span> <span class="string">'[A-Za-z0-9.]+@[A-Za-z0-9.]+\.[a-zA-Z]{2,3}'</span> <span class="keyword">file</span>.txt</div><div class="line">zhangsan@sina.<span class="keyword">com</span></div><div class="line">lishi.<span class="number">123</span>@sohu.<span class="keyword">com</span></div></pre></td></tr></table></figure>
+
+<p>过滤网站地址：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#egrep -o 'http:<span class="comment">//[A-Za-z0-9\-\.]+\.[a-zA-Z]{2,3}' file.txt</span></div><div class="line">http:<span class="comment">//code.nagios.google.com</span></div><div class="line">http:<span class="comment">//www.baidu.com</span></div></pre></td></tr></table></figure>
+
+<p>过滤IP地址：<br><code>egrep -o &quot;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&quot; file.txt</code></p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/05/04/cloudupdate/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Cloudstack 4.2.0 update 4.2.1 故障报告
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/04/24/chinantp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">China Ntp Server</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="shell_middle" data-title="运维常用shell" data-url="http://cloudbps.com/2014/05/03/shell_middle/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tom.liu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

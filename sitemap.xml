@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://cloudbps.com/2015/01/10/cdn/</loc>
+    <lastmod>2015-01-10T17:21:59.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2015/01/10/nginx_tun/</loc>
+    <lastmod>2015-01-10T16:44:45.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/0010/08/15/web_conurrtn/</loc>
+    <lastmod>2015-01-10T08:33:46.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/05/03/shell_middle/</loc>
+    <lastmod>2015-01-10T08:33:35.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2013/11/10/shell/</loc>
+    <lastmod>2015-01-10T08:32:29.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2015/01/10/nginx_productiontun/</loc>
+    <lastmod>2015-01-10T08:32:03.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2013/03/10/ssh_recent/</loc>
+    <lastmod>2015-01-10T08:31:47.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2013/06/07/screen/</loc>
+    <lastmod>2015-01-10T08:31:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/03/11/mac_route/</loc>
+    <lastmod>2015-01-10T08:31:20.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/04/24/chinantp/</loc>
+    <lastmod>2015-01-10T08:31:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/05/09/pythonmoitorweb/</loc>
+    <lastmod>2015-01-10T08:30:47.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/02/25/linux_tty/</loc>
+    <lastmod>2015-01-10T08:30:38.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2013/03/07/ssh/</loc>
+    <lastmod>2015-01-10T08:30:26.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2013/03/10/ssh_config/</loc>
+    <lastmod>2015-01-10T08:30:17.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2013/12/29/openvpn/</loc>
+    <lastmod>2015-01-10T08:30:01.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/03/06/glusterfs/</loc>
+    <lastmod>2015-01-10T08:29:40.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/05/04/cloudupdate/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/06/08/cloudstack_ova/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/01/11/cloudstack_kvm/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/03/13/cloudstack-error-across/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/05/05/cloudsession/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/04/17/cloud-templtate/</loc>
+    <lastmod>2015-01-10T08:28:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/04/21/CloudAddPrimary/</loc>
+    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/06/08/cloudstack_zone/</loc>
+    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/02/25/cloud/</loc>
+    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2013/12/10/cloudstack/</loc>
+    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/05/07/clouddelpri/</loc>
+    <lastmod>2015-01-10T08:28:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/04/17/cloud-sec-proys/</loc>
+    <lastmod>2015-01-10T08:25:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2014/05/09/ansible_ubuntu1404error/</loc>
+    <lastmod>2015-01-10T08:25:00.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/2015/01/10/tun/</loc>
+    <lastmod>2015-01-10T07:36:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cloudbps.com/about/index.html</loc>
+    <lastmod>2015-01-10T07:36:02.000Z</lastmod>
+  </url>
+  
+</urlset>

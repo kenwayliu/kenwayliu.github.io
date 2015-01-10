@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Cloudstack 4.2.0 介绍 | 猫在云端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.CloudStack组成部分讲解：
+
+Zone：Zone 对应于现实中的一个数据中心，它是 CloudStack 中最大的一个单元。
+Pod：Pod 对应着一个机架。同一个 pod 中的机器在同一个子网（网段）中。
+Cluster：Cluster 是多个主机组成的一个集群。同一个 cluster 中的主机有相同的硬件，相同的 Hypervisor，和共用同样的存储。同一个 cluster 中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cloudstack 4.2.0 介绍">
+<meta property="og:url" content="http://cloudbps.com/2013/12/10/cloudstack/">
+<meta property="og:site_name" content="猫在云端">
+<meta property="og:description" content="一.CloudStack组成部分讲解：
+
+Zone：Zone 对应于现实中的一个数据中心，它是 CloudStack 中最大的一个单元。
+Pod：Pod 对应着一个机架。同一个 pod 中的机器在同一个子网（网段）中。
+Cluster：Cluster 是多个主机组成的一个集群。同一个 cluster 中的主机有相同的硬件，相同的 Hypervisor，和共用同样的存储。同一个 cluster 中的">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cloudstack 4.2.0 介绍">
+<meta name="twitter:description" content="一.CloudStack组成部分讲解：
+
+Zone：Zone 对应于现实中的一个数据中心，它是 CloudStack 中最大的一个单元。
+Pod：Pod 对应着一个机架。同一个 pod 中的机器在同一个子网（网段）中。
+Cluster：Cluster 是多个主机组成的一个集群。同一个 cluster 中的主机有相同的硬件，相同的 Hypervisor，和共用同样的存储。同一个 cluster 中的">
+
+  
+    <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/缓存加速/" style="font-size: NaNpx;">缓存加速</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zipperary.com/">Zippera的Blog</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://kisspuppet.com/">Puppet运维自动化技术分享</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xuchanggang.cn/">没有伞的孩子必须努力奔跑</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bubbyroom.com/">守住每一天</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://opython.com/">Python自动化运维</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.aikaiyuan.com/">爱开源</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://noops.me/">小米运维</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					喜欢交流,喜欢开源
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-cloudstack" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/12/10/cloudstack/" class="article-date">
+  	<time datetime="2013-12-10T14:16:33.000Z" itemprop="datePublished">12月 10 2013</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CloudStack/">CloudStack</a>
+  </div>
+
+      
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cloudstack 4.2.0 介绍
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一-CloudStack组成部分讲解：">一.CloudStack组成部分讲解：</h2>
+<ol>
+<li>Zone：Zone 对应于现实中的一个数据中心，它是 CloudStack 中最大的一个单元。</li>
+<li>Pod：Pod 对应着一个机架。同一个 pod 中的机器在同一个子网（网段）中。</li>
+<li>Cluster：Cluster 是多个主机组成的一个集群。同一个 cluster 中的主机有相同的硬件，相同的 Hypervisor，和共用同样的存储。同一个 cluster 中的虚拟机，可以实现无中断服务地从一个主机迁移到另外一个上。</li>
+<li>Host：Host 就是运行虚拟机（VM）的主机。</li>
+<li>即从包含关系上来说，一个 zone 包含多个 pod，一个 pod 包含多个 cluster，一个 cluster 包含多个 host。</li>
+<li>CloudStack 中存在两种存储：</li>
+<li>Primary storage：一级存储与 cluster 关联，它为该 cluster 中的主机的全部虚拟机提供磁盘卷。一个 cluster 至少有一个一级存储，且在部署时位置要临近主机以提供高性能。</li>
+<li>Secondary storage：二级存储与 zone 关联，它存储模板文件，ISO 镜像和磁盘卷快照。</li>
+<li>模板：可以启动虚拟机的操作系统镜像，也包括了诸如已安装应用的其余配置信息。</li>
+<li>ISO 镜像：包含操作系统数据或启动媒质的磁盘镜像。</li>
+<li>磁盘卷快照：虚拟机数据的已储存副本，能用于数据恢复或者创建新模板</li>
+</ol>
+<p><a id="more"></a></p>
+<h2 id="二-安装_CloudStack">二.安装 CloudStack</h2>
+<p>环境准备<br>一个完整的 CloudStack 环境包括两部分：</p>
+<ul>
+<li>管理服务器（Management Server）</li>
+<li>虚拟机管理器 (Hypervisor)</li>
+<li>Centos6.4</li>
+<li>CloudStack4.2</li>
+</ul>
+<h2 id="三-具体配置">三.具体配置</h2>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.配置yum,检测网络,hostname,安装ntp,安装manager</div><div class="line">[<span class="constant">CloudStack</span>]</div><div class="line">name=<span class="constant">CloudStack</span></div><div class="line">baseurl=<span class="symbol">http:</span>/<span class="regexp">/CloudStack.apt-get.eu/rhel</span><span class="regexp">/4.2/</span></div><div class="line">enabled=<span class="number">1</span></div><div class="line">gpgcheck=<span class="number">0</span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># hostname -f</span></div><div class="line">cloud-agent.test.com</div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># ping -c 3 www.CloudStack.org</span></div><div class="line"><span class="constant">PING</span> www.apache.org (<span class="number">192.87</span>.<span class="number">106.229</span>) <span class="number">56</span>(<span class="number">84</span>) bytes of data.</div><div class="line"><span class="number">64</span> bytes from aurora-<span class="number">2012</span>.apache.org (<span class="number">192.87</span>.<span class="number">106.229</span>)<span class="symbol">:</span> icmp_seq=<span class="number">1</span> ttl=<span class="number">45</span> time=<span class="number">396</span> ms</div><div class="line"><span class="number">64</span> bytes from aurora-<span class="number">2012</span>.apache.org (<span class="number">192.87</span>.<span class="number">106.229</span>)<span class="symbol">:</span> icmp_seq=<span class="number">2</span> ttl=<span class="number">45</span> time=<span class="number">396</span> ms</div><div class="line"><span class="number">64</span> bytes from aurora-<span class="number">2012</span>.apache.org (<span class="number">192.87</span>.<span class="number">106.229</span>)<span class="symbol">:</span> icmp_seq=<span class="number">3</span> ttl=<span class="number">45</span> time=<span class="number">396</span> ms</div><div class="line">--- www.apache.org ping statistics ---</div><div class="line"><span class="number">5</span> packets transmitted, <span class="number">3</span> received, <span class="number">40</span>% packet loss, time <span class="number">4644</span>ms</div><div class="line">rtt min/avg/max/mdev = <span class="number">396.281</span>/<span class="number">396.515</span>/<span class="number">396.858</span>/<span class="number">0</span>.<span class="number">570</span> ms</div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># yum -y install CloudStack-management</span></div><div class="line"><span class="number">2</span>.安装配置mysql数据库</div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># yum -y instal mysql-server</span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># vi /etc/my.cnf</span></div><div class="line">添加以下参数</div><div class="line">innodb_rollback_on_timeout=<span class="number">1</span></div><div class="line">innodb_lock_wait_timeout=<span class="number">600</span></div><div class="line">max_connections=<span class="number">350</span></div><div class="line">log-bin=mysql-bin</div><div class="line">binlog-format = <span class="string">'ROW'</span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># /etc/init.d/mysqld start  #初始化mysql</span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># mysql_secure_installation #加固mysql</span></div><div class="line"><span class="number">3</span>.设置selinux</div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># setenforce 0</span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># getenforce</span></div><div class="line"><span class="constant">Permissive</span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># sed -i 's/SELINUX=*/SELINUX=Permissive/' /etc/sysconfig/selinux</span></div><div class="line"><span class="number">4</span>.导入数据到mysql，启动manager</div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment">#CloudStack-setup-databases cloud:&lt;dbpassword&gt;<span class="yardoctag">@localhost</span> \  #设置cloud的dbpassword</span></div><div class="line">--deploy-as=<span class="symbol">root:</span>&lt;password&gt; \   <span class="comment">#通过mysql的root用户去导入</span></div><div class="line"><span class="input"><span class="prompt">-e &lt;encryption_type&gt;</span> \</span></div><div class="line"><span class="input"><span class="prompt">-m &lt;management_server_key&gt;</span> \</span></div><div class="line"><span class="input"><span class="prompt">-k &lt;database_key&gt;</span> \</span></div><div class="line">-i &lt;management_server_ip&gt;</div><div class="line"><span class="input"><span class="prompt">[root@CloudStack /]# CloudStack-setup-management #启动manager和设置iptbles等环境</span></span></div><div class="line">5.如果要初始化设置可以执行下列语句</div><div class="line">mysql&gt; drop database cloud; drop database cloud_usage;</div><div class="line">然后在重新执行以上操作</div><div class="line"><span class="number">6</span>. 创建主存储和二级存储</div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># yum -y install nfs-utils</span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># cat /etc/exports</span></div><div class="line">/export *(rw,async,no_root_squash)</div><div class="line">[root<span class="variable">@CloudStack</span> export]<span class="comment"># exportfs -a #生效/etc/export</span></div><div class="line">[root<span class="variable">@CloudStack</span> export]<span class="comment"># exportfs -v #查看导出目录</span></div><div class="line">/export       &lt;world&gt;(rw,async,wdelay,no_root_squash,no_subtree_check)</div><div class="line"><span class="input"><span class="prompt">[root@CloudStack /]# mkdir /export/{primary,secondary} -p  #创建目录</span></span></div><div class="line">[root@CloudStack /]# cat &gt;&gt; /etc/sysconfig/nfs &lt;&lt;<span class="constant">ENF</span>   <span class="comment">#编辑/etc/sysconfig/nfs</span></div><div class="line">&gt; <span class="constant">LOCKD_TCPPORT</span>=<span class="number">32803</span></div><div class="line">&gt; <span class="constant">LOCKD_UDPPORT</span>=<span class="number">32769</span></div><div class="line">&gt; <span class="constant">MOUNTD_PORT</span>=<span class="number">892</span></div><div class="line">&gt; <span class="constant">RQUOTAD_PORT</span>=<span class="number">875</span></div><div class="line">&gt; <span class="constant">STATD_PORT</span>=<span class="number">662</span></div><div class="line">&gt; <span class="constant">STATD_OUTGOING_PORT</span>=<span class="number">2020</span></div><div class="line"><span class="input"><span class="prompt">&gt; ENF</span></span></div><div class="line">[root@CloudStack /]#vim /etc/sysconfig/iptables  #添加一下防火墙策略</div><div class="line">-A INPUT -s &lt;NETWORK&gt; -m state --state <span class="constant">NEW</span> -p udp --dport <span class="number">111</span> -j <span class="constant">ACCEPT</span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p tcp --dport <span class="number">111</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p tcp --dport <span class="number">2049</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p tcp --dport <span class="number">32803</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p udp --dport <span class="number">32769</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p tcp --dport <span class="number">892</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p udp --dport <span class="number">892</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p tcp --dport <span class="number">875</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p udp --dport <span class="number">875</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p tcp --dport <span class="number">662</span> -j <span class="constant">ACCEPT</span></span></div><div class="line"><span class="input"><span class="prompt">-A INPUT -s &lt;NETWORK&gt;</span> -m state --state <span class="constant">NEW</span> -p udp --dport <span class="number">662</span> -j <span class="constant">ACCEPT</span></span></div><div class="line">[root<span class="variable">@CloudStack</span> /]<span class="comment"># /etc/init.d/nfs restart && /etc/init.d/mysqld restart /etc/init.d/iptables restart</span></div><div class="line"><span class="number">5</span>.通过<span class="symbol">http:</span>/<span class="regexp">/hostname:8080/client</span>  访问</div><div class="line">默认用户名：admin</div><div class="line">密码：password</div><div class="line">后期安装agent端和相关配置</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/12/29/openvpn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Openvpn
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/11/10/shell/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Shell编程基础</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cloudstack" data-title="Cloudstack 4.2.0 介绍" data-url="http://cloudbps.com/2013/12/10/cloudstack/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tom.liu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

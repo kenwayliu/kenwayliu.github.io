@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Openvpn | 猫在云端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装环境
+centos6.4_x86最小化安装
+NOTE:
+1234如果是在VPS中需要通过以下的命令来查看是否支持tun,如果不支持联系vps供应商cat /dev/net/tun返回以下说明支持tun：cat: /dev/net/tun: File descriptor in bad state
+
+一.环境设置和相关软件：
+1.1关闭selinux,由于主机名在此环境中已经设置好了，如果有需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Openvpn">
+<meta property="og:url" content="http://cloudbps.com/2013/12/29/openvpn/">
+<meta property="og:site_name" content="猫在云端">
+<meta property="og:description" content="安装环境
+centos6.4_x86最小化安装
+NOTE:
+1234如果是在VPS中需要通过以下的命令来查看是否支持tun,如果不支持联系vps供应商cat /dev/net/tun返回以下说明支持tun：cat: /dev/net/tun: File descriptor in bad state
+
+一.环境设置和相关软件：
+1.1关闭selinux,由于主机名在此环境中已经设置好了，如果有需要">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Openvpn">
+<meta name="twitter:description" content="安装环境
+centos6.4_x86最小化安装
+NOTE:
+1234如果是在VPS中需要通过以下的命令来查看是否支持tun,如果不支持联系vps供应商cat /dev/net/tun返回以下说明支持tun：cat: /dev/net/tun: File descriptor in bad state
+
+一.环境设置和相关软件：
+1.1关闭selinux,由于主机名在此环境中已经设置好了，如果有需要">
+
+  
+    <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/缓存加速/" style="font-size: NaNpx;">缓存加速</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zipperary.com/">Zippera的Blog</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://kisspuppet.com/">Puppet运维自动化技术分享</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xuchanggang.cn/">没有伞的孩子必须努力奔跑</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bubbyroom.com/">守住每一天</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://opython.com/">Python自动化运维</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.aikaiyuan.com/">爱开源</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://noops.me/">小米运维</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					喜欢交流,喜欢开源
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7sbxwp.com1.z0.glb.clouddn.com/20150111?v2&amp;s=150">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-openvpn" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/12/29/openvpn/" class="article-date">
+  	<time datetime="2013-12-29T14:16:33.000Z" itemprop="datePublished">12月 29 2013</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Openvpn/">Openvpn</a>
+  </div>
+
+      
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Openvpn
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装环境">安装环境</h2>
+<p>centos6.4_x86最小化安装</p>
+<p><strong>NOTE:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">如果是在VPS中需要通过以下的命令来查看是否支持tun,如果不支持联系vps供应商</div><div class="line">cat /dev/net/tun</div><div class="line">返回以下说明支持tun：</div><div class="line">cat: /dev/net/tun: File descriptor <span class="keyword">in</span> bad state</div></pre></td></tr></table></figure>
+
+<h2 id="一-环境设置和相关软件：">一.环境设置和相关软件：</h2>
+<p>1.1关闭selinux,由于主机名在此环境中已经设置好了，如果有需要可自行修改</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setenforce <span class="number">0</span></div><div class="line"></div><div class="line">sed -i <span class="string">'s/SELINUX=enforcing/SELINUX=permissive/'</span> /etc/sysconfig/selinux</div></pre></td></tr></table></figure>
+
+<p><a id="more"></a><br>1.2安装一下软件包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ntp</div><div class="line">openssl</div><div class="line">lzo</div><div class="line">pam</div><div class="line">pam-devel</div><div class="line">pam_mysql</div><div class="line">mysql</div><div class="line">mysql-server</div><div class="line">pkcs11-helper</div><div class="line">openvpn</div></pre></td></tr></table></figure>
+
+<h2 id="二-创建/etc/pam-d/openvpn">二.创建/etc/pam.d/openvpn</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">auth sufficient pam_mysql.so user=vpn passwd=Tom.liu host=localhost db=openvpn table=openuser usercolumn=username passwdcolumn=password where=active=<span class="number">1</span> sqllog=<span class="number">1</span> crypt=<span class="number">2</span></div><div class="line">account required pam_mysql.so user=vpn passwd=Tom.liu host=localhost db=openvpn table=openuser usercolumn=username passwdcolumn=password where=active=<span class="number">1</span> sqllog=<span class="number">1</span> crypt=<span class="number">2</span></div></pre></td></tr></table></figure>
+
+<h2 id="三-创建openpn数据库">三.创建openpn数据库</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>)创建测试用户</div><div class="line">create database openvpn char set utf8;</div><div class="line"></div><div class="line"><span class="number">2</span>)授权用户</div><div class="line">grant all on openvpn.* to vpn<span class="decorator">@localhost identified by 'Tom.liu';</span></div><div class="line"></div><div class="line"><span class="number">3</span>)创建openuser表</div><div class="line">CREATE TABLE IF NOT EXISTS `openuser` (   `username` char(<span class="number">32</span>) COLLATE utf8_unicode_ci NOT NULL,   `password` char(<span class="number">128</span>) COLLATE utf8_unicode_ci DEFAULT NULL,   `active` int(<span class="number">10</span>) NOT NULL DEFAULT <span class="string">'1'</span>,   `creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,   `name` varchar(<span class="number">32</span>) COLLATE utf8_unicode_ci NOT NULL,   `email` char(<span class="number">128</span>) COLLATE utf8_unicode_ci DEFAULT NULL,   `note` text COLLATE utf8_unicode_ci,   `quota_cycle` int(<span class="number">10</span>) NOT NULL DEFAULT <span class="string">'30'</span>,   `quota_bytes` bigint(<span class="number">20</span>) NOT NULL DEFAULT <span class="string">'10737418240'</span>,   `enabled` int(<span class="number">10</span>) NOT NULL DEFAULT <span class="string">'1'</span>,   PRIMARY KEY (`username`),   KEY `idx_active` (`active`),   KEY `idx_enabled` (`enabled`) ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;</div><div class="line"></div><div class="line"></div><div class="line"><span class="number">4</span>)添加用户</div><div class="line">insert into openuser (username,password) value (<span class="string">'username'</span>,password(<span class="string">'password'</span>));</div><div class="line"></div><div class="line"><span class="number">5</span>)测试pam_mysql</div><div class="line">安装以下软件包</div><div class="line"><span class="number">5.1</span>）yum install cyrus-sasl cyrus-sasl-plain cyrus-sasl-devel cyrus-sasl-lib cyrus-sasl-gssapi 安装测试mysql-openvpn的连通性</div><div class="line">    /etc/init.d/saslauthd restart</div><div class="line"></div><div class="line"><span class="number">5.2</span>）模板中默认已经建立好一个test用户  密码为：testing</div><div class="line">testsaslauthd -u test -p inspur -s openvpn</div><div class="line">**返OK <span class="string">"Success"</span>表示pam_mysql验证通过</div></pre></td></tr></table></figure>
+
+<h2 id="四-openvpn设置">四.openvpn设置</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>)同步时间</div><div class="line">ntpdata <span class="number">202.120</span><span class="number">.2</span><span class="number">.101</span> </div><div class="line"><span class="number">2</span>)证书从vm模板中/etc/openvpn/keys获取，连同openvpn-auth-pam.so一起传输到openserver的/etc/openvpn下,因为<span class="number">2.1</span>之后的openvpn-auth-pam.so模块bug不能使用。只能从低版本的编译然后替换</div><div class="line"><span class="number">3</span>)创建/etc/openvpn/server.conf</div><div class="line">port <span class="number">1194</span></div><div class="line">proto tcp</div><div class="line">dev tun</div><div class="line">ca  /etc/openvpn/keys/ca.crt</div><div class="line">cert /etc/openvpn/keys/server.crt</div><div class="line">key /etc/openvpn/keys/server.key</div><div class="line">dh /etc/openvpn/keys/dh2048.pem</div><div class="line">server <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span> <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></div><div class="line">ifconfig-pool-persist ipp.txt</div><div class="line">push <span class="string">"dhcp-option DNS 8.8.8.8"</span></div><div class="line">client-to-client</div><div class="line">;duplicate-cn    <span class="comment">#如果需要一个帐号并发登录需要启用这个选项。</span></div><div class="line">keepalive <span class="number">10</span> <span class="number">120</span></div><div class="line">comp-lzo</div><div class="line">user nobody</div><div class="line">group nobody</div><div class="line">persist-key</div><div class="line">persist-tun</div><div class="line">status /var/log/openvpn-status.log</div><div class="line">log         /var/log/openvpn.log</div><div class="line">log-append  /var/log/openvpn.log</div><div class="line">verb <span class="number">3</span></div><div class="line">plugin ./openvpn-auth-pam.so openvpn</div><div class="line">client-cert-<span class="keyword">not</span>-required</div><div class="line">username-<span class="keyword">as</span>-common-name</div></pre></td></tr></table></figure>
+
+<h2 id="五-安全策略">五.安全策略</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>关闭不需要的服务</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> iscsi ip6tables saslauthd;do /etc/init.d/$i stop && chkconfig $i off;done</div><div class="line"></div><div class="line"><span class="number">2.</span>防火墙策略</div><div class="line"><span class="comment"># Generated by iptables-save v1.4.7 on Tue Dec 24 08:51:36 2013</span></div><div class="line">*nat</div><div class="line">:PREROUTING ACCEPT [<span class="number">1047</span>:<span class="number">215483</span>]</div><div class="line">:POSTROUTING ACCEPT [<span class="number">50</span>:<span class="number">3437</span>]</div><div class="line">:OUTPUT ACCEPT [<span class="number">50</span>:<span class="number">3437</span>]</div><div class="line">-A POSTROUTING -s <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">24</span> -j MASQUERADE</div><div class="line">COMMIT</div><div class="line"><span class="comment"># Completed on Tue Dec 24 08:51:36 2013</span></div><div class="line"><span class="comment"># Generated by iptables-save v1.4.7 on Tue Dec 24 08:51:36 2013</span></div><div class="line">*filter</div><div class="line">:INPUT ACCEPT [<span class="number">0</span>:<span class="number">0</span>]</div><div class="line">:FORWARD ACCEPT [<span class="number">0</span>:<span class="number">0</span>]</div><div class="line">:OUTPUT ACCEPT [<span class="number">42</span>:<span class="number">4856</span>]</div><div class="line">-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT </div><div class="line">-A INPUT -i tun+ -j ACCEPT</div><div class="line">-A INPUT -p tcp --dport <span class="number">1194</span> -j ACCEPT</div><div class="line">-A INPUT -p udp --dport <span class="number">1194</span> -j ACCEPT</div><div class="line">-A INPUT -p icmp -j ACCEPT </div><div class="line">-A INPUT -i lo -j ACCEPT </div><div class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="number">22</span> -j ACCEPT </div><div class="line">-A INPUT -j REJECT --reject-<span class="keyword">with</span> icmp-host-prohibited </div><div class="line">-A FORWARD -i tun+ -j ACCEPT</div><div class="line">-A FORWARD -d <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">24</span> -j ACCEPT</div><div class="line">-A FORWARD -j REJECT --reject-<span class="keyword">with</span> icmp-host-prohibited </div><div class="line">-A OUTPUT -s <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">24</span> -j ACCEPT</div><div class="line">-A OUTPUT -o lo -j ACCEPT</div><div class="line">-A OUTPUT -p icmp --icmp-type <span class="number">1</span> -j ACCEPT</div><div class="line">-A OUTPUT -p icmp --icmp-type <span class="number">8</span> -j ACCEPT</div><div class="line">COMMIT</div><div class="line"><span class="comment"># Completed on Tue Dec 24 08:51:36 2013</span></div></pre></td></tr></table></figure>
+
+<h2 id="六-数据备份">六.数据备份</h2>
+<p>1.备份脚本为mysql.sh内容为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#define some path</div><div class="line">mysqldumppath=/usr/bin/mysqldump</div><div class="line">gzippath=/bin/gzip</div><div class="line">mysqluser=vpn</div><div class="line">mysqlpasswd=Tom.liu</div><div class="line">database=`mysql -u$mysqluser -p$mysqlpasswd -B -e  "show databases"|egrep -v '(Database|information_schema|test)'`</div><div class="line">backpath=/back</div><div class="line">datatime=`date +%Y%m%d`</div><div class="line">sdatatime=`date --date '7 days ago' +'%Y%m%d'`</div><div class="line">LOCKFILE=/tmp/$(basename $0)_lock</div><div class="line">#Rsyncpath=/usr/local/bin/rsync</div><div class="line"></div><div class="line">#mysqldump is script</div><div class="line">if [ -f $LOCKFILE ];then</div><div class="line">          pid=`cat $LOCKFILE`</div><div class="line">          [ -n $pid ] && ps -p $pid |grep $pid &gt; /dev/null</div><div class="line">          [ $? = 0 ] && echo "script is runing" && exit 1</div><div class="line">     else</div><div class="line">          echo $$ &gt;&gt; $LOCKFILE</div><div class="line">fi</div><div class="line"></div><div class="line">mysqldump() {</div><div class="line">     if [ -d $backpath ];then</div><div class="line">                  echo "start backup"</div><div class="line">               else</div><div class="line">                    mkdir $backpath</div><div class="line">     fi</div><div class="line">     for i in $database;do</div><div class="line">          $mysqldumppath -u$mysqluser -p$mysqlpasswd $i  |$gzippath -9 &gt; ${backpath}/${i}_${datatime}.gz</div><div class="line">     done</div><div class="line">     }</div><div class="line"></div><div class="line"></div><div class="line">#clear 5 days databases</div><div class="line">mysqlclear() {</div><div class="line">     rm -f ${backpath}/*_${sdatatime}.gz</div><div class="line">          }</div><div class="line"></div><div class="line">mysqldump && sleep 3  && mysqlclear</div><div class="line">rm -f $LOCKFILE</div></pre></td></tr></table></figure>
+
+<h2 id="七-客户端配置文件client配置">七.客户端配置文件client配置</h2>
+<h5 id="linux环境client-conf"><strong>linux环境client.conf</strong></h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tun</div><div class="line">proto tcp</div><div class="line">remote <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span> <span class="number">1194</span></div><div class="line">ca ca.crt</div><div class="line">persist-key</div><div class="line">persist-tun</div><div class="line">ns-cert-type server</div><div class="line">comp-lzo</div><div class="line">verb <span class="number">3</span></div><div class="line">redirect-gateway def1</div><div class="line">route-method exe</div><div class="line">route-delay <span class="number">2</span></div><div class="line">auth-user-<span class="keyword">pass</span></div><div class="line">script-security <span class="number">2</span></div><div class="line">up ./update-resolv-conf</div><div class="line">down ./update-resolv-conf</div></pre></td></tr></table></figure>
+
+<h5 id="windows环境client-ovpn"><strong>windows环境client.ovpn</strong></h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line">dev tun</div><div class="line">proto tcp</div><div class="line">remote <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span> <span class="number">1194</span></div><div class="line">ca ca.crt</div><div class="line">persist-key</div><div class="line">persist-tun</div><div class="line">ns-cert-type server</div><div class="line">comp-lzo</div><div class="line">verb <span class="number">3</span></div><div class="line">redirect-gateway def1</div><div class="line">route-method exe</div><div class="line">route-delay <span class="number">2</span></div><div class="line">auth-user-<span class="keyword">pass</span></div><div class="line">script-security <span class="number">2</span> system</div></pre></td></tr></table></figure>
+
+<h2 id="八-流量统计">八.流量统计</h2>
+<h2 id="九-常见问题">九.常见问题</h2>
+<h5 id="server端问题">server端问题</h5>
+<ol>
+<li>由于openvpn2.1 以后的openvpn-auth-pam.so 存在bug，无法认证通过，通过日志查看 ‘test’ faile的提示<br>这时需要去编译2.0.9或者2.0.7的openvpn-auth-pam.so，然后覆盖当前的.</li>
+</ol>
+<hr>
+<h5 id="client端问题">client端问题</h5>
+<ol>
+<li>windows 7无法添加路由，openvpn-gui-2.1.1-client兼容性的问题，需要设置兼容性为windows xp sp3</li>
+<li>linux 登录openvpn server 无法push server的dns，需要在client.conf中添加以下参数<br> up ./update-resolv-conf<br> down ./update-resolv-conf</li>
+</ol>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/11/cloudstack_kvm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Cloudstack 4.2.0 添加KVM主机
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/12/10/cloudstack/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cloudstack 4.2.0 介绍</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="openvpn" data-title="Openvpn" data-url="http://cloudbps.com/2013/12/29/openvpn/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tom.liu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
