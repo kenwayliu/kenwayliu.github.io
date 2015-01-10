@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/缓存加速/" style="font-size: NaNpx;">缓存加速</a>
+						<a href="/tags/IAAS/" style="font-size: 20.00px;">IAAS</a><a href="/tags/Linux常用工具/" style="font-size: 10.00px;">Linux常用工具</a><a href="/tags/Mac添加路由/" style="font-size: 10.00px;">Mac添加路由</a><a href="/tags/NTP时间/" style="font-size: 10.00px;">NTP时间</a><a href="/tags/VPN/" style="font-size: 10.00px;">VPN</a><a href="/tags/WEB服务器/" style="font-size: 13.33px;">WEB服务器</a><a href="/tags/分布式系统/" style="font-size: 10.00px;">分布式系统</a><a href="/tags/系统安全/" style="font-size: 16.67px;">系统安全</a><a href="/tags/缓存加速/" style="font-size: 10.00px;">缓存加速</a><a href="/tags/脚本语言/" style="font-size: 13.33px;">脚本语言</a><a href="/tags/调优手册/" style="font-size: 10.00px;">调优手册</a><a href="/tags/运维自动化/" style="font-size: 10.00px;">运维自动化</a>
 					</div>
 				</section>
 				
@@ -193,18 +193,20 @@
 </nav>
       
   
-    <article id="post-cloud" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux_tty" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/02/25/cloud/" class="article-date">
+      <a href="/2014/02/25/linux_tty/" class="article-date">
   	<time datetime="2014-02-25T11:44:33.000Z" itemprop="datePublished">2月 25 2014</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CloudStack/">CloudStack</a>
+    <a class="article-category-link" href="/categories/Linux-Secure/">Linux Secure</a>
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -216,7 +218,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/02/25/cloud/">Cloudstack 4.2.1-快照测试案例</a>
+      <a class="article-title" href="/2014/02/25/linux_tty/">Linux tty secure</a>
     </h1>
   
 
@@ -224,19 +226,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>测试环境：</p>
-<p>Vmware虚拟化</p>
-<pre><code>centos5.3 x86_64 
-centos6.4 x86_64
-</code></pre><p>vmware快照的组成：</p>
-<pre><code><span class="string">.</span><span class="comment">vmdk</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">delta的基础磁盘，当删除该虚机的所有快照时</span><span class="string">,</span><span class="comment">所有创建的delta文件都将合并到原始的vmdk磁盘，如果删除一个单独的快照，那么他的delta的信息合并到父级，当恢复时无论恢复哪个快照，这个快照就是新的父级快照</span>
-<span class="string">.</span><span class="comment">vmsd</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">用于存放快照的元数据和信息</span>
-<span class="string">.</span><span class="comment">vmsn</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">快照的状态文件</span><span class="string">,</span><span class="comment">用于存放快照的精准状态</span>
-<span class="string">.</span><span class="comment">vmss</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">vmware暂停状态的文件</span><span class="string">,</span><span class="comment">移动快照该文件自动删除</span>
-</code></pre><p>
+        <h4 id="Linux_tty_secure">Linux tty secure</h4>
+<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
+<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
+<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
+<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
+<p>
         
           <p class="article-more-link">
-            <a href="/2014/02/25/cloud/#more">more >></a>
+            <a href="/2014/02/25/linux_tty/#more">more >></a>
           </p>
         
       
@@ -263,6 +261,8 @@ centos6.4 x86_64
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IAAS/">IAAS</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -318,6 +318,8 @@ centos6.4 x86_64
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPN/">VPN</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -376,6 +378,8 @@ centos6.4 x86_64
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IAAS/">IAAS</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -439,6 +443,8 @@ centos6.4 x86_64
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/脚本语言/">脚本语言</a></li></ul>
+
     </div>
   
   <div class="article-inner">

@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/缓存加速/" style="font-size: NaNpx;">缓存加速</a>
+						<a href="/tags/IAAS/" style="font-size: 20.00px;">IAAS</a><a href="/tags/Linux常用工具/" style="font-size: 10.00px;">Linux常用工具</a><a href="/tags/Mac添加路由/" style="font-size: 10.00px;">Mac添加路由</a><a href="/tags/NTP时间/" style="font-size: 10.00px;">NTP时间</a><a href="/tags/VPN/" style="font-size: 10.00px;">VPN</a><a href="/tags/WEB服务器/" style="font-size: 13.33px;">WEB服务器</a><a href="/tags/分布式系统/" style="font-size: 10.00px;">分布式系统</a><a href="/tags/系统安全/" style="font-size: 16.67px;">系统安全</a><a href="/tags/缓存加速/" style="font-size: 10.00px;">缓存加速</a><a href="/tags/脚本语言/" style="font-size: 13.33px;">脚本语言</a><a href="/tags/调优手册/" style="font-size: 10.00px;">调优手册</a><a href="/tags/运维自动化/" style="font-size: 10.00px;">运维自动化</a>
 					</div>
 				</section>
 				
@@ -205,6 +205,8 @@
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WEB服务器/">WEB服务器</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -311,6 +313,8 @@
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优手册/">调优手册</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -363,6 +367,8 @@
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WEB服务器/">WEB服务器</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -382,10 +388,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="一、内存调优">一、内存调优</h4>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">内核关于内存的选项都在/proc/sys/vm目录下.</div><div class="line"><span class="number">1</span>.pdflush,用于回写内存中的脏数据到硬盘。可以通过 /proc/sys/vm/vm.dirty_background_ratio调整。</div><div class="line">首先查看这个值默认应该是<span class="number">10</span>。</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_background_ratio</span></div><div class="line"><span class="number">10</span></div><div class="line">这个值是一个阀值,说明如果内存中的脏数据达到系统总内存的<span class="number">10</span>%时,那么pdflush进程就会启动,将内存中的脏数据写回硬盘.这个值可适当调高.可获得更快的写入速度.</div><div class="line"><span class="number">2</span>.swappiness选项</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/swappiness</span></div><div class="line"><span class="number">60</span></div><div class="line">swappiness表示使用swap分区的使用程度,可以适当调整swappiness=<span class="number">0</span>的时候表示尽可能使用物理内存swap空间.swappiness=<span class="number">100</span>积极使用swap.</div><div class="line"><span class="number">3</span>.dirty_ratio</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_ratio</span></div><div class="line"><span class="number">40</span></div><div class="line">dirty_ratio的值是数据写进内存的阀值,<span class="number">40</span>%是指当系统内存已经缓存了<span class="number">40</span>%的数据以后,就不再往内存中缓存数据了.</div></pre></td></tr></table></figure>
-
-<p>
+        <p>
         
           <p class="article-more-link">
             <a href="/2015/01/10/nginx_productiontun/#more">more >></a>
@@ -415,6 +418,8 @@
   </div>
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IAAS/">IAAS</a></li></ul>
+
     </div>
   
   <div class="article-inner">

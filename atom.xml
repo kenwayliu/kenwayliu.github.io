@@ -4,7 +4,7 @@
   <subtitle><![CDATA[做自己喜欢做的事，相信自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cloudbps.com/"/>
-  <updated>2015-01-10T17:55:23.597Z</updated>
+  <updated>2015-01-10T18:25:06.799Z</updated>
   <id>http://cloudbps.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://cloudbps.com/2015/01/10/nginx_tun/"/>
     <id>http://cloudbps.com/2015/01/10/nginx_tun/</id>
     <published>2015-01-10T04:44:33.000Z</published>
-    <updated>2015-01-10T16:44:45.000Z</updated>
+    <updated>2015-01-10T18:22:09.000Z</updated>
     <content type="html"><![CDATA[<p>一般来说nginx 配置文件中对优化比较有作用的为以下几项：</p>
 <h3 id="配置文件优化">配置文件优化</h3>
 <a id="more"></a>
@@ -50,6 +50,8 @@
 ]]>
     
     </summary>
+    
+      <category term="WEB服务器" scheme="http://cloudbps.com/tags/WEB%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="Nginx" scheme="http://cloudbps.com/categories/Nginx/"/>
     
@@ -215,7 +217,7 @@
     <link href="http://cloudbps.com/2015/01/10/tun/"/>
     <id>http://cloudbps.com/2015/01/10/tun/</id>
     <published>2015-01-10T04:19:00.000Z</published>
-    <updated>2015-01-10T07:36:02.000Z</updated>
+    <updated>2015-01-10T18:24:00.000Z</updated>
     <content type="html"><![CDATA[<p>一、系统性能定义</p>
 <p>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
 <p>Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。<br>Latency， 系统延迟。也就是系统在处理一个请求或一个任务时的延迟。<br>一般来说，一个系统的性能受到这两个条件的约束，缺一不可。比如，我的系统可以顶得住一百万的并发，但是系统的延迟是2分钟以上，那么，这个一百万的负载毫无意义。系统延迟很短，但是吞吐量很低，同样没有意义。所以，一个好的系统的性能测试必然受到这两个条件的同时作用。 有经验的朋友一定知道，这两个东西的一些关系：</p>
@@ -307,6 +309,8 @@
     
     </summary>
     
+      <category term="调优手册" scheme="http://cloudbps.com/tags/%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/"/>
+    
       <category term="调优" scheme="http://cloudbps.com/categories/%E8%B0%83%E4%BC%98/"/>
     
   </entry>
@@ -316,11 +320,11 @@
     <link href="http://cloudbps.com/2015/01/10/nginx_productiontun/"/>
     <id>http://cloudbps.com/2015/01/10/nginx_productiontun/</id>
     <published>2015-01-10T04:19:00.000Z</published>
-    <updated>2015-01-10T08:32:03.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="一、内存调优">一、内存调优</h4>
+    <updated>2015-01-10T18:13:51.000Z</updated>
+    <content type="html"><![CDATA[<p><a id="more"></a></p>
+<h4 id="一、内存调优">一、内存调优</h4>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">内核关于内存的选项都在/proc/sys/vm目录下.</div><div class="line"><span class="number">1</span>.pdflush,用于回写内存中的脏数据到硬盘。可以通过 /proc/sys/vm/vm.dirty_background_ratio调整。</div><div class="line">首先查看这个值默认应该是<span class="number">10</span>。</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_background_ratio</span></div><div class="line"><span class="number">10</span></div><div class="line">这个值是一个阀值,说明如果内存中的脏数据达到系统总内存的<span class="number">10</span>%时,那么pdflush进程就会启动,将内存中的脏数据写回硬盘.这个值可适当调高.可获得更快的写入速度.</div><div class="line"><span class="number">2</span>.swappiness选项</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/swappiness</span></div><div class="line"><span class="number">60</span></div><div class="line">swappiness表示使用swap分区的使用程度,可以适当调整swappiness=<span class="number">0</span>的时候表示尽可能使用物理内存swap空间.swappiness=<span class="number">100</span>积极使用swap.</div><div class="line"><span class="number">3</span>.dirty_ratio</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_ratio</span></div><div class="line"><span class="number">40</span></div><div class="line">dirty_ratio的值是数据写进内存的阀值,<span class="number">40</span>%是指当系统内存已经缓存了<span class="number">40</span>%的数据以后,就不再往内存中缓存数据了.</div></pre></td></tr></table></figure>
 
-<p><a id="more"></a></p>
 <h4 id="二、磁盘I/O调优">二、磁盘I/O调优</h4>
 <ul>
 <li>Linux磁盘I/O调优<ul>
@@ -350,12 +354,11 @@
 
 ]]></content>
     <summary type="html">
-    <![CDATA[<h4 id="一、内存调优">一、内存调优</h4>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">内核关于内存的选项都在/proc/sys/vm目录下.</div><div class="line"><span class="number">1</span>.pdflush,用于回写内存中的脏数据到硬盘。可以通过 /proc/sys/vm/vm.dirty_background_ratio调整。</div><div class="line">首先查看这个值默认应该是<span class="number">10</span>。</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_background_ratio</span></div><div class="line"><span class="number">10</span></div><div class="line">这个值是一个阀值,说明如果内存中的脏数据达到系统总内存的<span class="number">10</span>%时,那么pdflush进程就会启动,将内存中的脏数据写回硬盘.这个值可适当调高.可获得更快的写入速度.</div><div class="line"><span class="number">2</span>.swappiness选项</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/swappiness</span></div><div class="line"><span class="number">60</span></div><div class="line">swappiness表示使用swap分区的使用程度,可以适当调整swappiness=<span class="number">0</span>的时候表示尽可能使用物理内存swap空间.swappiness=<span class="number">100</span>积极使用swap.</div><div class="line"><span class="number">3</span>.dirty_ratio</div><div class="line">[root<span class="variable">@esf</span> ~]<span class="comment"># cat /proc/sys/vm/dirty_ratio</span></div><div class="line"><span class="number">40</span></div><div class="line">dirty_ratio的值是数据写进内存的阀值,<span class="number">40</span>%是指当系统内存已经缓存了<span class="number">40</span>%的数据以后,就不再往内存中缓存数据了.</div></pre></td></tr></table></figure>
-
-<p>]]>
+    <![CDATA[<p>]]>
     
     </summary>
+    
+      <category term="WEB服务器" scheme="http://cloudbps.com/tags/WEB%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="Nginx" scheme="http://cloudbps.com/categories/Nginx/"/>
     
@@ -366,7 +369,7 @@
     <link href="http://cloudbps.com/2014/06/08/cloudstack_zone/"/>
     <id>http://cloudbps.com/2014/06/08/cloudstack_zone/</id>
     <published>2014-06-08T04:10:00.000Z</published>
-    <updated>2015-01-10T08:28:56.000Z</updated>
+    <updated>2015-01-10T18:19:10.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li>现在我们需要重新部署一遍CloudStack,就是删除所有的数据,因为删除的时候出现了很多错误.<br><a id="more"></a><ul>
 <li>禁用区域,通过CloudStack-ui删除所有的虚拟机(业务+系统+vRoute)</li>
@@ -386,6 +389,8 @@
     
     </summary>
     
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
       <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
   </entry>
@@ -395,7 +400,7 @@
     <link href="http://cloudbps.com/2014/06/08/cloudstack_ova/"/>
     <id>http://cloudbps.com/2014/06/08/cloudstack_ova/</id>
     <published>2014-06-08T03:30:00.000Z</published>
-    <updated>2015-01-10T08:28:57.000Z</updated>
+    <updated>2015-01-10T18:18:30.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li>现在需要从vMware原生平台迁入vm到CloudStack 4.2.1中,我这边只拿到了ova的模板,为了验证模板中的硬件配置是否符合CloudStack要求(1.导出时取消所有usb设备连接 2.保证cd/dvd的连接是当前客户端设备 3.顺便看下scsi控制器的格式).<a id="more"></a></li>
 <li>如果发现ova模板不符合规格,可参考以下两种方法.<ul>
@@ -417,6 +422,8 @@
     
     </summary>
     
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
       <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
   </entry>
@@ -426,7 +433,7 @@
     <link href="http://cloudbps.com/2014/05/09/ansible_ubuntu1404error/"/>
     <id>http://cloudbps.com/2014/05/09/ansible_ubuntu1404error/</id>
     <published>2014-05-09T07:50:00.000Z</published>
-    <updated>2015-01-10T08:25:00.000Z</updated>
+    <updated>2015-01-10T18:14:33.000Z</updated>
     <content type="html"><![CDATA[<p>一.抛出log信息</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Command /usr/bin/python -c <span class="string">"import setuptools, tokenize;__file__='/tmp/pip_build_root/pycrypto/setup.py';exec(compile(getattr(tokenize, 'open', open)(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))"</span> install --record /tmp/pip-Ii3Ksu-record/install-record.txt --single-version-externally-managed --compile failed <span class="keyword">with</span> error code <span class="number">1</span> <span class="keyword">in</span> /tmp/pip_build_root/pycrypto</div><div class="line">Storing debug log <span class="keyword">for</span> failure <span class="keyword">in</span> /root/.pip/pip.log</div></pre></td></tr></table></figure>
 
@@ -437,6 +444,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre]]>
     </summary>
     
+      <category term="运维自动化" scheme="http://cloudbps.com/tags/%E8%BF%90%E7%BB%B4%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
       <category term="Ansible" scheme="http://cloudbps.com/categories/Ansible/"/>
     
   </entry>
@@ -446,7 +455,7 @@
     <link href="http://cloudbps.com/2014/05/09/pythonmoitorweb/"/>
     <id>http://cloudbps.com/2014/05/09/pythonmoitorweb/</id>
     <published>2014-05-09T07:24:33.000Z</published>
-    <updated>2015-01-10T08:30:47.000Z</updated>
+    <updated>2015-01-10T18:19:58.000Z</updated>
     <content type="html"><![CDATA[<p>接到需求帮朋友监控一个信息网站,当该网站有相关的数据更新的时候发送信息到指定邮箱.<br>下面是相关的python脚本,用到了httplib, time , sys ,smtplib模块<br><a id="more"></a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding=utf8</span></div><div class="line"><span class="keyword">import</span> httplib, time</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> smtplib</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf8'</span>)</div><div class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</div><div class="line">mailto_list=[<span class="string">'sendmail@126.com'</span>]</div><div class="line">mail_host=<span class="string">"smtp.sina.com"</span></div><div class="line">mail_user=<span class="string">"sendmailaccount"</span></div><div class="line">mail_pass=<span class="string">"sendmailpassword"</span></div><div class="line">mail_postfix=<span class="string">"sina.com"</span></div><div class="line">sec=<span class="number">60</span></div><div class="line">conn = httplib.HTTPConnection(<span class="string">"网站地址"</span>)</div><div class="line">conn.request(<span class="string">"GET"</span>, <span class="string">"搜索后的网站地址|/caigou/kw-%E6%B1%A1%E6%B0%B4%E5%A4%84%E7%90%86%E6%8B%9B%E6%A0%87.html"</span>) </div><div class="line">r1 = conn.getresponse()</div><div class="line">a = r1.read()</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">(to_list,sub,content)</span>:</span></div><div class="line">    me=<span class="string">"网站信息已更新"</span>+<span class="string">"&lt;"</span>+mail_user+<span class="string">"@"</span>+mail_postfix+<span class="string">"&gt;"</span></div><div class="line">    msg = MIMEText(content,_subtype=<span class="string">'html'</span>,_charset=<span class="string">'utf8'</span>)</div><div class="line">    msg[<span class="string">'Subject'</span>] = sub</div><div class="line">    msg[<span class="string">'From'</span>] = me</div><div class="line">    msg[<span class="string">'To'</span>] = <span class="string">";"</span>.join(to_list)</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        s = smtplib.SMTP()</div><div class="line">        s.connect(mail_host)</div><div class="line">        s.login(mail_user,mail_pass)</div><div class="line">        s.sendmail(me, to_list, msg.as_string())</div><div class="line">        s.close()</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">except</span> Exception, e:</div><div class="line">        <span class="keyword">print</span> str(e)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"The program is starting"</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">	time.sleep( sec )</div><div class="line">	b = r1.read()</div><div class="line">	<span class="keyword">if</span> a == b:</div><div class="line">		<span class="keyword">print</span> <span class="string">'good running ,Now it is '</span> + time.strftime(<span class="string">'%Y年%m月%d日,%H:%M:%S'</span>)+ <span class="string">'\n请稍后.....'</span></div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">print</span> <span class="string">"网站更新"</span></div><div class="line">		<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">			<span class="keyword">if</span> send_mail(mailto_list, <span class="string">"网站信息已更新"</span>, <span class="string">"对应网站域名"</span>):</div><div class="line">        			<span class="keyword">print</span> <span class="string">"发送成功"</span></div><div class="line">    			<span class="keyword">else</span>:</div><div class="line">        			<span class="keyword">print</span> <span class="string">"发送失败"</span></div><div class="line">		a = r1.read()</div></pre></td></tr></table></figure>
 
@@ -455,6 +464,8 @@
     <![CDATA[<p>接到需求帮朋友监控一个信息网站,当该网站有相关的数据更新的时候发送信息到指定邮箱.<br>下面是相关的python脚本,用到了httplib, time , sys ,smtplib模块<br>]]>
     
     </summary>
+    
+      <category term="脚本语言" scheme="http://cloudbps.com/tags/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/"/>
     
       <category term="Python" scheme="http://cloudbps.com/categories/Python/"/>
     
@@ -465,7 +476,7 @@
     <link href="http://cloudbps.com/2014/05/07/clouddelpri/"/>
     <id>http://cloudbps.com/2014/05/07/clouddelpri/</id>
     <published>2014-05-07T14:23:33.000Z</published>
-    <updated>2015-01-10T08:28:56.000Z</updated>
+    <updated>2015-01-10T18:17:53.000Z</updated>
     <content type="html"><![CDATA[<p>由于线上的主存储容量比较大,剩余很多空间,现在需要更换一个小容量的主存储.</p>
 <p>思路:<br>1.添加新的存储到CS平台,迁移原存储中的卷到新的存储中<br>2.由于二级存储也在上面,所有在迁移二级存储的时候需要禁用ZONE<br>3.迁移数据卷完成后,把原存储置为维护模式然后删除主存储<br><a id="more"></a><br>碰到的问题:<br>    1.原有存储中的硬盘文件成功迁移到新的存储中了,但是虚拟机的配置信息还在原有的存储中.只是把数据文件迁移了.</p>
 <p>解决思路:<br>    1.备份重要的数据文件在原有的主存储中,销毁主存储中所有的虚拟机,把原有的主存储置为维护模式,移除主存储.<br>    2.如果主存储中有相关的模板信息,需要记下模板的名称,通过vc点击<code>虚拟机和模板</code>,从硬盘删除对应的模板文件</p>
@@ -476,6 +487,8 @@
     
     </summary>
     
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
       <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
   </entry>
@@ -485,7 +498,7 @@
     <link href="http://cloudbps.com/2014/05/05/cloudsession/"/>
     <id>http://cloudbps.com/2014/05/05/cloudsession/</id>
     <published>2014-05-05T11:23:33.000Z</published>
-    <updated>2015-01-10T08:28:57.000Z</updated>
+    <updated>2015-01-10T18:17:33.000Z</updated>
     <content type="html"><![CDATA[<p>由于CloudStack的保持时间很短,当我们登录到CloudStack-wei-ui后,默认30min内没有操作可以会与服务器断开,这时我们就需要重新登录,为了延长session的保持时间我们需要修改/etc/CloudStack/managerment/web.xml这个配置文件 481行,之前的值是30min我们可以改为1440<br>min(一天),然后需要重新启动CloudStack-managerment服务就可以了.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">480     &lt;session-config&gt;</div><div class="line">481         &lt;session-timeout&gt;1440&lt;/session-timeout&gt;</div><div class="line">482     &lt;/session-config&gt;</div><div class="line">483</div></pre></td></tr></table></figure>
 
@@ -493,6 +506,8 @@
     <summary type="html">
     <![CDATA[<p>由于CloudStack的保持时间很短,当我们登录到CloudStack-wei-ui后,默认30min内没有操作可以会与服务器断开,这时我们就需要重新登录,为了延长session的保持时间我们需要修改/etc/CloudStack/managerment/web.xml这]]>
     </summary>
+    
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
     
       <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
@@ -503,7 +518,7 @@
     <link href="http://cloudbps.com/2014/05/04/cloudupdate/"/>
     <id>http://cloudbps.com/2014/05/04/cloudupdate/</id>
     <published>2014-05-04T14:44:33.000Z</published>
-    <updated>2015-01-10T08:28:57.000Z</updated>
+    <updated>2015-01-10T18:18:38.000Z</updated>
     <content type="html"><![CDATA[<p>为了解决4.2.0的bug，现在需要升级到4.2.1<br>我当前的环境是两个NODE，为了安全期间，先从一台NODE下手,升级正常后在升级另一个NODE<br>升级步骤：</p>
 <ol>
 <li>备份数据库</li>
@@ -536,6 +551,8 @@
     
     </summary>
     
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
       <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
   </entry>
@@ -545,7 +562,7 @@
     <link href="http://cloudbps.com/2014/05/03/shell_middle/"/>
     <id>http://cloudbps.com/2014/05/03/shell_middle/</id>
     <published>2014-05-03T14:16:33.000Z</published>
-    <updated>2015-01-10T08:33:35.000Z</updated>
+    <updated>2015-01-10T18:23:20.000Z</updated>
     <content type="html"><![CDATA[<p>1.显示消耗内存/CPU最多的10个进程<br><code>ps aux | sort -nk +4 | tail -10</code><br><code>ps aux | sort -nk +3 | tail -10</code></p>
 <p>2.查看Apache的并发请求数及其TCP连接状态<br><code>netstat -n | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</code><br>另一种方法：<br><code>netstat -ant|awk &#39;/^tcp/ {print awk $NF}&#39;|sort|uniq -c|sort -nr</code><br><a id="more"></a></p>
 <p>3.找出自己最常用的10条命令及使用次数（或求访问最多的ip数）<br><code>sed -e &#39;s/| //n/g&#39; ~/.bash_history |cut -d  &#39;&#39; -f 1 | sort | uniq -c | sort -nr | head</code></p>
@@ -616,6 +633,8 @@
     
     </summary>
     
+      <category term="脚本语言" scheme="http://cloudbps.com/tags/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/"/>
+    
       <category term="Shell" scheme="http://cloudbps.com/categories/Shell/"/>
     
   </entry>
@@ -625,7 +644,7 @@
     <link href="http://cloudbps.com/2014/04/24/chinantp/"/>
     <id>http://cloudbps.com/2014/04/24/chinantp/</id>
     <published>2014-04-24T02:44:33.000Z</published>
-    <updated>2015-01-10T08:31:02.000Z</updated>
+    <updated>2015-01-10T18:17:17.000Z</updated>
     <content type="html"><![CDATA[<h4 id="China_Ntp_server">China Ntp server</h4>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">server <span class="number">0</span>.cn.pool.ntp.org</div><div class="line">server <span class="number">1</span>.asia.pool.ntp.org</div><div class="line">server <span class="number">3</span>.asia.pool.ntp.org</div></pre></td></tr></table></figure>
 
@@ -634,6 +653,8 @@
     <![CDATA[<h4 id="China_Ntp_server">China Ntp server</h4>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><]]>
     </summary>
+    
+      <category term="NTP时间" scheme="http://cloudbps.com/tags/NTP%E6%97%B6%E9%97%B4/"/>
     
       <category term="Linux Tools" scheme="http://cloudbps.com/categories/Linux-Tools/"/>
     
@@ -644,7 +665,7 @@
     <link href="http://cloudbps.com/2014/04/21/CloudAddPrimary/"/>
     <id>http://cloudbps.com/2014/04/21/CloudAddPrimary/</id>
     <published>2014-04-21T11:44:33.000Z</published>
-    <updated>2015-01-10T08:28:56.000Z</updated>
+    <updated>2015-01-10T18:20:39.000Z</updated>
     <content type="html"><![CDATA[<p>环境描述:</p>
 <ol>
 <li>主存储由于用的是NFS,在磁盘I/O上面有很大的瓶颈,读写速率只有56MB/s左右,创建一个windows需要花费15分钟左右,严重影响vm的创建,所以我们需要更换SAN的存储采用FC-FC的连接服务器-光纤交换机-存储.</li>
@@ -679,24 +700,7 @@
     
     </summary>
     
-      <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cloudstack 4.2.1-模板注册问题]]></title>
-    <link href="http://cloudbps.com/2014/04/17/cloud-templtate/"/>
-    <id>http://cloudbps.com/2014/04/17/cloud-templtate/</id>
-    <published>2014-04-16T16:00:00.000Z</published>
-    <updated>2015-01-10T08:28:57.000Z</updated>
-    <content type="html"><![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">状态<span class="symbol">:</span> connection refused</div><div class="line">      </div><div class="line">      碰到这个文件需要修改全局变量参数</div><div class="line">      	secstorage.allowed.internal.sites  在后面输入二级存储的<span class="constant">IP</span>就可以, xx.xx.xx.xx/<span class="number">32</span> 就可以了,如果只写<span class="constant">IP</span>地址是不可以的</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</d]]>
-    </summary>
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
     
       <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
@@ -707,7 +711,7 @@
     <link href="http://cloudbps.com/2014/04/17/cloud-sec-proys/"/>
     <id>http://cloudbps.com/2014/04/17/cloud-sec-proys/</id>
     <published>2014-04-16T16:00:00.000Z</published>
-    <updated>2015-01-10T08:25:14.000Z</updated>
+    <updated>2015-01-10T18:18:45.000Z</updated>
     <content type="html"><![CDATA[<p>一.由于二级存储和主存储放在一起,下午突然网络中断可想而知后果的严重性了.系统vm全部read-only,无法挂在文件系统.解决思路</p>
 <ul>
 <li><p>1.1.当网络成功恢复后,登录UI查看功能vm的状态,如果都是Runing on的状态,那么就OK,如果不是那么.</p>
@@ -726,6 +730,29 @@
 <li><p>1.1.当网络成功恢复后,登录UI查看功能vm的状态,如果都是Runing on的状态,那么就OK,如果不是]]>
     </summary>
     
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
+      <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Cloudstack 4.2.1-模板注册问题]]></title>
+    <link href="http://cloudbps.com/2014/04/17/cloud-templtate/"/>
+    <id>http://cloudbps.com/2014/04/17/cloud-templtate/</id>
+    <published>2014-04-16T16:00:00.000Z</published>
+    <updated>2015-01-10T18:18:05.000Z</updated>
+    <content type="html"><![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">状态<span class="symbol">:</span> connection refused</div><div class="line">      </div><div class="line">      碰到这个文件需要修改全局变量参数</div><div class="line">      	secstorage.allowed.internal.sites  在后面输入二级存储的<span class="constant">IP</span>就可以, xx.xx.xx.xx/<span class="number">32</span> 就可以了,如果只写<span class="constant">IP</span>地址是不可以的</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>1.当我们在高级网络(通过VLAN的方式隔离)中注册模板的时候可能会在模板注册的时候提示</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</d]]>
+    </summary>
+    
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
       <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
   </entry>
@@ -735,7 +762,7 @@
     <link href="http://cloudbps.com/2014/03/13/cloudstack-error-across/"/>
     <id>http://cloudbps.com/2014/03/13/cloudstack-error-across/</id>
     <published>2014-03-13T15:49:33.000Z</published>
-    <updated>2015-01-10T08:28:57.000Z</updated>
+    <updated>2015-01-10T18:18:21.000Z</updated>
     <content type="html"><![CDATA[<p>1.今天创建vm,抛出以下异常<br>通过以下方法可以解决<br><a id="more"></a></p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div></pre></td><td class="code"><pre><div class="line">2014-03-13 16:15:31,228 DEBUG [cloud.storage.VolumeManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Checking if we need to prepare 2 volumes for VM[User|DSJAppServer01]</div><div class="line">2014-03-13 16:15:31,248 DEBUG [storage.image.TemplateDataFactoryImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) template 290 is already in store:2, type:Image</div><div class="line">2014-03-13 16:15:31,274 DEBUG [storage.datastore.PrimaryDataStoreImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Not found (templateId:290poolId:23) in template_spool_ref, persisting it</div><div class="line">2014-03-13 16:15:31,293 DEBUG [storage.image.TemplateDataFactoryImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) template 290 is already in store:23, type:Primary</div><div class="line">2014-03-13 16:15:31,295 DEBUG [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Found template 290-2-d3ccfe00-e08a-3a52-86f1-e19c4e26f2a7 in storage pool 23 with VMTemplateStoragePool id: 223</div><div class="line">2014-03-13 16:15:31,307 DEBUG [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Acquire lock on VMTemplateStoragePool 223 with timeout 3600 seconds</div><div class="line">2014-03-13 16:15:31,314 INFO  [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) lock is acquired for VMTemplateStoragePool 223</div><div class="line">2014-03-13 16:15:31,331 DEBUG [storage.motion.AncientDataMotionStrategy] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) copyAsync inspecting src type TEMPLATE copyAsync inspecting dest type TEMPLATE</div><div class="line">2014-03-13 16:15:31,375 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 18-1940796686: Sending  { Cmd , MgmtId: 345050394595, via: 18, Ver: v1, Flags: 100111, [{"org.apache.CloudStack.storage.command.CopyCommand":{"srcTO":{"org.apache.CloudStack.storage.to.TemplateObjectTO":{"path":"template/tmpl/2/290/60539132-19a1-3dfe-b425-fdb45fd9076d.ova","origUrl":"http://172.22.2.1/inspur/inspurcloud/customvm/win200864bitnopatch.ova","uuid":"d1da06af-6ae4-4d5f-80c6-a6a6fd373311","id":290,"format":"OVA","accountId":2,"checksum":"2c609d3019b0cadf5943793f4b8edd9f","hvm":true,"displayText":"win2008 64bit without patch","imageDataStore":{"com.cloud.agent.api.to.NfsTO":{"_url":"nfs://172.22.2.1/vg02data01/icp/ss01","_role":"Image"}},"name":"290-2-d3ccfe00-e08a-3a52-86f1-e19c4e26f2a7","hypervisorType":"VMware"}},"destTO":{"org.apache.CloudStack.storage.to.TemplateObjectTO":{"origUrl":"http://172.22.2.1/inspur/inspurcloud/customvm/win200864bitnopatch.ova","uuid":"d1da06af-6ae4-4d5f-80c6-a6a6fd373311","id":290,"format":"OVA","accountId":2,"checksum":"2c609d3019b0cadf5943793f4b8edd9f","hvm":true,"displayText":"win2008 64bit without patch","imageDataStore":{"org.apache.CloudStack.storage.to.PrimaryDataStoreTO":{"uuid":"841a5ebc-f2fc-3a18-84bb-92c06dd51318","id":23,"poolType":"VMFS","host":"VMFS datastore: /INSPURXCICP/DSJ01-R02-V01","path":"/INSPURXCICP/DSJ01-R02-V01","port":0}},"name":"290-2-d3ccfe00-e08a-3a52-86f1-e19c4e26f2a7","hypervisorType":"VMware"}},"executeInSequence":true,"wait":10800}}] }</div><div class="line">2014-03-13 16:15:31,375 INFO  [agent.manager.AgentAttache] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 18-1940796686: Unable to send due to Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:31,375 DEBUG [agent.manager.AgentAttache] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 18-1940796686: Cancelling.</div><div class="line">2014-03-13 16:15:31,375 DEBUG [CloudStack.storage.RemoteHostEndPoint] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:31,375 DEBUG [storage.motion.AncientDataMotionStrategy] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) copy object failed: </div><div class="line">com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at org.apache.CloudStack.storage.RemoteHostEndPoint.sendMessage(RemoteHostEndPoint.java:104)</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyObject(AncientDataMotionStrategy.java:210)</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyAsync(AncientDataMotionStrategy.java:411)</div><div class="line">	at org.apache.CloudStack.storage.motion.DataMotionServiceImpl.copyAsync(DataMotionServiceImpl.java:55)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createBaseImageAsync(VolumeServiceImpl.java:440)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createVolumeFromTemplateAsync(VolumeServiceImpl.java:569)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.recreateVolume(VolumeManagerImpl.java:2536)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.prepare(VolumeManagerImpl.java:2592)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:889)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:31,376 DEBUG [storage.motion.AncientDataMotionStrategy] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) copy failed</div><div class="line">com.cloud.utils.exception.CloudRuntimeException: com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyObject(AncientDataMotionStrategy.java:231)</div><div class="line">	at org.apache.CloudStack.storage.motion.AncientDataMotionStrategy.copyAsync(AncientDataMotionStrategy.java:411)</div><div class="line">	at org.apache.CloudStack.storage.motion.DataMotionServiceImpl.copyAsync(DataMotionServiceImpl.java:55)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createBaseImageAsync(VolumeServiceImpl.java:440)</div><div class="line">	at org.apache.CloudStack.storage.volume.VolumeServiceImpl.createVolumeFromTemplateAsync(VolumeServiceImpl.java:569)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.recreateVolume(VolumeManagerImpl.java:2536)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.prepare(VolumeManagerImpl.java:2592)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:889)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:31,411 INFO  [storage.volume.VolumeServiceImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) releasing lock for VMTemplateStoragePool 223</div><div class="line">2014-03-13 16:15:31,412 WARN  [utils.db.Merovingian2] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Was unable to find lock for the key template_spool_ref223 and thread id 1577994744</div><div class="line">2014-03-13 16:15:31,412 DEBUG [cloud.storage.VolumeManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Unable to create Vol[491|vm=301|ROOT]:com.cloud.utils.exception.CloudRuntimeException: com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:31,412 INFO  [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Unable to contact resource.</div><div class="line">com.cloud.exception.StorageUnavailableException: Resource [StoragePool:23] is unreachable: Unable to create Vol[491|vm=301|ROOT]:com.cloud.utils.exception.CloudRuntimeException: com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:15, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.recreateVolume(VolumeManagerImpl.java:2544)</div><div class="line">	at com.cloud.storage.VolumeManagerImpl.prepare(VolumeManagerImpl.java:2592)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:889)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:31,425 DEBUG [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Cleaning up resources for the vm VM[User|DSJAppServer01] in Starting state</div><div class="line">2014-03-13 16:15:31,428 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 14-1829315172: Sending  { Cmd , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 100111, [{"com.cloud.agent.api.StopCommand":{"isProxy":false,"executeInSequence":true,"vmName":"i-28-301-VM","wait":0}}] }</div><div class="line">2014-03-13 16:15:31,428 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 14-1829315172: Executing:  { Cmd , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 100111, [{"com.cloud.agent.api.StopCommand":{"isProxy":false,"executeInSequence":true,"vmName":"i-28-301-VM","wait":0}}] }</div><div class="line">2014-03-13 16:15:31,429 DEBUG [agent.manager.DirectAgentAttache] (DirectAgent-431:null) Seq 14-1829315172: Executing request</div><div class="line">2014-03-13 16:15:31,429 INFO  [vmware.resource.VmwareResource] (DirectAgent-431:172.22.1.6) Executing resource StopCommand: {"isProxy":false,"executeInSequence":true,"vmName":"i-28-301-VM","wait":0}</div><div class="line">2014-03-13 16:15:31,429 DEBUG [vmware.mo.HostMO] (DirectAgent-431:172.22.1.6) find VM i-28-301-VM on host</div><div class="line">2014-03-13 16:15:31,429 INFO  [vmware.mo.HostMO] (DirectAgent-431:172.22.1.6) VM i-28-301-VM not found in host cache</div><div class="line">2014-03-13 16:15:31,429 DEBUG [vmware.mo.HostMO] (DirectAgent-431:172.22.1.6) load VM cache on host</div><div class="line">2014-03-13 16:15:31,444 INFO  [vmware.resource.VmwareResource] (DirectAgent-431:172.22.1.6) VM i-28-301-VM is no longer in vSphere</div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.manager.DirectAgentAttache] (DirectAgent-431:null) Seq 14-1829315172: Response Received: </div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.transport.Request] (DirectAgent-431:null) Seq 14-1829315172: Processing:  { Ans: , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 110, [{"com.cloud.agent.api.StopAnswer":{"vncPort":0,"result":true,"details":"VM i-28-301-VM is no longer in vSphere","wait":0}}] }</div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.manager.AgentAttache] (DirectAgent-431:null) Seq 14-1829315172: No more commands found</div><div class="line">2014-03-13 16:15:31,445 DEBUG [agent.transport.Request] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Seq 14-1829315172: Received:  { Ans: , MgmtId: 345050394595, via: 14, Ver: v1, Flags: 110, { StopAnswer } }</div><div class="line">2014-03-13 16:15:31,462 DEBUG [cloud.network.NetworkManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Changing active number of nics for network id=222 on -1</div><div class="line">2014-03-13 16:15:31,762 DEBUG [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Successfully released network resources for the vm VM[User|DSJAppServer01]</div><div class="line">2014-03-13 16:15:31,762 DEBUG [cloud.vm.VirtualMachineManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Successfully cleanued up resources for the vm VM[User|DSJAppServer01] in Starting state</div><div class="line">2014-03-13 16:15:31,785 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Deploy avoids pods: [], clusters: [], hosts: [14, 15]</div><div class="line">2014-03-13 16:15:31,787 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) DeploymentPlanner allocation algorithm: com.cloud.deploy.FirstFitPlanner_EnhancerByCloudStack_a648ceb@5f712485</div><div class="line">2014-03-13 16:15:31,787 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Trying to allocate a host and storage pools from dc:2, pod:2,cluster:null, requested cpu: 12000, requested ram: 68719476736</div><div class="line">2014-03-13 16:15:31,787 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Is ROOT volume READY (pool already allocated)?: No</div><div class="line">2014-03-13 16:15:31,788 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Searching resources only under specified Pod: 2</div><div class="line">2014-03-13 16:15:31,788 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Listing clusters in order of aggregate capacity, that have (atleast one host with) enough CPU and RAM capacity under this Pod: 2</div><div class="line">2014-03-13 16:15:31,796 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Removing from the clusterId list these clusters from avoid set: []</div><div class="line">2014-03-13 16:15:31,808 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Checking resources in Cluster: 5 under Pod: 2</div><div class="line">2014-03-13 16:15:31,808 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Looking for hosts in dc: 2  pod:2  cluster:5</div><div class="line">2014-03-13 16:15:31,814 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) FirstFitAllocator has 2 hosts to check for allocation: [Host[-14-Routing], Host[-15-Routing]]</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Found 2 hosts for allocation after prioritization: [Host[-14-Routing], Host[-15-Routing]]</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Looking for speed=12000Mhz, Ram=65536</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Host name: 172.22.1.6, hostId: 14 is in avoid set, skipping this and trying other available hosts</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Host name: 172.22.1.1, hostId: 15 is in avoid set, skipping this and trying other available hosts</div><div class="line">2014-03-13 16:15:31,824 DEBUG [allocator.impl.FirstFitAllocator] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] FirstFitRoutingAllocator) Host Allocator returning 0 suitable hosts</div><div class="line">2014-03-13 16:15:31,824 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) No suitable hosts found</div><div class="line">2014-03-13 16:15:31,824 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) No suitable hosts found under this Cluster: 5</div><div class="line">2014-03-13 16:15:31,830 DEBUG [cloud.deploy.DeploymentPlanningManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Could not find suitable Deployment Destination for this VM under any clusters, returning. </div><div class="line">2014-03-13 16:15:31,830 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Searching resources only under specified Pod: 2</div><div class="line">2014-03-13 16:15:31,831 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Listing clusters in order of aggregate capacity, that have (atleast one host with) enough CPU and RAM capacity under this Pod: 2</div><div class="line">2014-03-13 16:15:31,837 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Removing from the clusterId list these clusters from avoid set: [5]</div><div class="line">2014-03-13 16:15:31,840 DEBUG [cloud.deploy.FirstFitPlanner] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) No clusters found after removing disabled clusters and clusters in avoid list, returning.</div><div class="line">2014-03-13 16:15:31,868 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) VM state transitted from :Starting to Stopped with event: OperationFailedvm's original host id: null new host id: null host id before state transition: 14</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Hosts's actual total CPU: 64000 and CPU after applying overprovisioning: 1280000</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Hosts's actual total RAM: 549746139136 and RAM after applying overprovisioning: 10994923339776</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) release cpu from host: 14, old used: 28500,reserved: 0, actual total: 64000, total with overprovisioning: 1280000; new used: 16500,reserved:0; movedfromreserved: false,moveToReserveredfalse</div><div class="line">2014-03-13 16:15:31,881 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) release mem from host: 14, old used: 137707388928,reserved: 0, total: 10994923339776; new used: 68987912192,reserved:0; movedfromreserved: false,moveToReserveredfalse</div><div class="line">2014-03-13 16:15:31,923 DEBUG [cloud.vm.UserVmManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Destroying vm VM[User|DSJAppServer01] as it failed to create on Host with Id:15</div><div class="line">2014-03-13 16:15:31,954 DEBUG [cloud.capacity.CapacityManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) VM state transitted from :Stopped to Error with event: OperationFailedToErrorvm's original host id: null new host id: null host id before state transition: null</div><div class="line">2014-03-13 16:15:32,033 WARN  [apache.CloudStack.alerts] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ])  alertType:: 8 // dataCenterId:: 2 // podId:: 2 // clusterId:: null // message:: Failed to deploy Vm with Id: 301, on Host with Id: 15</div><div class="line">2014-03-13 16:15:32,136 INFO  [user.vm.DeployVMCmd] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) com.cloud.exception.InsufficientServerCapacityException: Unable to create a deployment for VM[User|DSJAppServer01]Scope=interface com.cloud.dc.DataCenter; id=2</div><div class="line">2014-03-13 16:15:32,136 INFO  [user.vm.DeployVMCmd] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Unable to create a deployment for VM[User|DSJAppServer01]</div><div class="line">com.cloud.exception.InsufficientServerCapacityException: Unable to create a deployment for VM[User|DSJAppServer01]Scope=interface com.cloud.dc.DataCenter; id=2</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.advanceStart(VirtualMachineManagerImpl.java:842)</div><div class="line">	at com.cloud.vm.VirtualMachineManagerImpl.start(VirtualMachineManagerImpl.java:578)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VMEntityManagerImpl.deployVirtualMachine(VMEntityManagerImpl.java:237)</div><div class="line">	at org.apache.CloudStack.engine.cloud.entity.api.VirtualMachineEntityImpl.deploy(VirtualMachineEntityImpl.java:209)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:3406)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2966)</div><div class="line">	at com.cloud.vm.UserVmManagerImpl.startVirtualMachine(UserVmManagerImpl.java:2952)</div><div class="line">	at com.cloud.utils.component.ComponentInstantiationPostProcessor$InterceptorDispatcher.intercept(ComponentInstantiationPostProcessor.java:125)</div><div class="line">	at org.apache.CloudStack.api.command.user.vm.DeployVMCmd.execute(DeployVMCmd.java:420)</div><div class="line">	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:158)</div><div class="line">	at com.cloud.async.AsyncJobManagerImpl$1.run(AsyncJobManagerImpl.java:531)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)</div><div class="line">	at java.util.concurrent.FutureTask.run(FutureTask.java:166)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div><div class="line">2014-03-13 16:15:32,140 DEBUG [cloud.async.AsyncJobManagerImpl] (Job-Executor-8:job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ]) Complete async job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ], jobStatus: 2, resultCode: 530, result: Error Code: 533 Error text: Unable to create a deployment for VM[User|DSJAppServer01]</div><div class="line">2014-03-13 16:15:32,424 DEBUG [cloud.api.ApiServlet] (catalina-exec-6:null) ===START===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&response=json&listall=True&keyword=dsj&command=listVirtualMachines</div><div class="line">2014-03-13 16:15:32,467 DEBUG [cloud.api.ApiServlet] (catalina-exec-6:null) ===END===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&response=json&listall=True&keyword=dsj&command=listVirtualMachines</div><div class="line">2014-03-13 16:15:33,252 DEBUG [cloud.api.ApiServlet] (catalina-exec-1:null) ===START===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&command=queryAsyncJobResult&response=json&jobid=5fa4d6ef-5596-4043-98ac-5a4defed54ee</div><div class="line">2014-03-13 16:15:33,278 DEBUG [cloud.async.AsyncJobManagerImpl] (catalina-exec-1:null) Async job-1131 = [ 5fa4d6ef-5596-4043-98ac-5a4defed54ee ] completed</div><div class="line">2014-03-13 16:15:33,286 DEBUG [cloud.api.ApiServlet] (catalina-exec-1:null) ===END===  172.30.22.1 -- GET  sessionkey=2x5T5NMxyGWnBzgLBdgMnJ8dsrU%3D&command=queryAsyncJobResult&response=json&jobid=5fa4d6ef-5596-4043-98ac-5a4defed54ee</div><div class="line">2014-03-13 16:15:39,618 DEBUG [agent.manager.AgentManagerImpl] (AgentManager-Handler-1:null) SeqA 8-147828: Processing Seq 8-147828:  { Cmd , MgmtId: -1, via: 8, Ver: v1, Flags: 11, [{"com.cloud.agent.api.ConsoleProxyLoadReportCommand":{"_proxyVmId":85,"_loadInfo":"{\n  \"connections\": []\n}","wait":0}}] }</div><div class="line">2014-03-13 16:15:39,631 DEBUG [agent.manager.AgentManagerImpl] (AgentManager-Handler-1:null) SeqA 8-147828: Sending Seq 8-147828:  { Ans: , MgmtId: 345050394595, via: 8, Ver: v1, Flags: 100010, [{"com.cloud.agent.api.AgentControlAnswer":{"result":true,"wait":0}}] }</div><div class="line">2014-03-13 16:15:41,807 DEBUG [cloud.server.StatsCollector] (StatsCollector-1:null) StorageCollector is running...</div><div class="line">2014-03-13 16:15:41,877 DEBUG [agent.transport.Request] (StatsCollector-1:null) Seq 13-1827806745: Received:  { Ans: , MgmtId: 345050394595, via: 13, Ver: v1, Flags: 10, { GetStorageStatsAnswer } }</div><div class="line">2014-03-13 16:15:41,884 INFO  [agent.manager.AgentAttache] (StatsCollector-1:null) Seq 18-1940796687: Unable to send due to Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:41,884 DEBUG [agent.manager.AgentAttache] (StatsCollector-1:null) Seq 18-1940796687: Cancelling.</div><div class="line">2014-03-13 16:15:41,884 DEBUG [CloudStack.storage.RemoteHostEndPoint] (StatsCollector-1:null) Failed to send command, due to Agent:18, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">2014-03-13 16:15:41,884 ERROR [cloud.server.StatsCollector] (StatsCollector-1:null) Error trying to retrieve storage stats</div><div class="line">com.cloud.utils.exception.CloudRuntimeException: Failed to send command, due to Agent:18, com.cloud.exception.AgentUnavailableException: Resource [Host:18] is unreachable: Host 18: Channel is closed</div><div class="line">	at org.apache.CloudStack.storage.RemoteHostEndPoint.sendMessage(RemoteHostEndPoint.java:104)</div><div class="line">	at com.cloud.server.StatsCollector$StorageCollector.run(StatsCollector.java:545)</div><div class="line">	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</div><div class="line">	at java.util.concurrent.FutureTask$Sync.innerRunAndReset(FutureTask.java:351)</div><div class="line">	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:178)</div><div class="line">	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:165)</div><div class="line">	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:267)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1146)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</div><div class="line">	at java.lang.Thread.run(Thread.java:679)</div></pre></td></tr></table></figure>
 
@@ -748,6 +775,8 @@
     
     </summary>
     
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
       <category term="CloudStack-errorlog" scheme="http://cloudbps.com/categories/CloudStack-errorlog/"/>
     
   </entry>
@@ -757,7 +786,7 @@
     <link href="http://cloudbps.com/2014/03/11/mac_route/"/>
     <id>http://cloudbps.com/2014/03/11/mac_route/</id>
     <published>2014-03-11T02:44:33.000Z</published>
-    <updated>2015-01-10T08:31:20.000Z</updated>
+    <updated>2015-01-10T18:21:15.000Z</updated>
     <content type="html"><![CDATA[<p>And because i feel lucky today, (0n a Friday the 13th, that looks kind of odd), here’s another how-to. This is how I added a static route on some Xserves.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="constant">Simple</span> <span class="symbol">solution:</span> route -n add <span class="number">10.0</span>.<span class="number">0</span>.<span class="number">0</span>/<span class="number">8</span> <span class="number">10.16</span>.<span class="number">3.254</span></div></pre></td></tr></table></figure>
 
@@ -788,6 +817,8 @@
     
     </summary>
     
+      <category term="Mac添加路由" scheme="http://cloudbps.com/tags/Mac%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/"/>
+    
       <category term="Linux Tools" scheme="http://cloudbps.com/categories/Linux-Tools/"/>
     
   </entry>
@@ -797,7 +828,7 @@
     <link href="http://cloudbps.com/2014/03/06/glusterfs/"/>
     <id>http://cloudbps.com/2014/03/06/glusterfs/</id>
     <published>2014-03-05T16:19:00.000Z</published>
-    <updated>2015-01-10T08:29:40.000Z</updated>
+    <updated>2015-01-10T18:15:34.000Z</updated>
     <content type="html"><![CDATA[<h4 id="一-Gluster简介">一.Gluster简介</h4>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="constant">Glusterfs</span>是一个开源分布式文件系统，具有强大的横向扩展能力，通过扩展可以支持<span class="constant">PB</span>以上的容量<span class="constant">GlusterFS</span>借助<span class="constant">TCP</span>/<span class="constant">IP</span>或<span class="constant">InfiniBand</span> <span class="constant">RDMA</span>网络将物理分布的存储资源聚集在一起，</div><div class="line">使用单一全局命名空间来管理数据。<span class="constant">GlusterFS</span>基于可堆叠的用户空间设计，可为各种不同的数据负载提供优异的性能。</div></pre></td></tr></table></figure>
 
@@ -847,49 +878,81 @@
     
     </summary>
     
+      <category term="分布式系统" scheme="http://cloudbps.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/"/>
+    
       <category term="Glusterfs" scheme="http://cloudbps.com/categories/Glusterfs/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Linux tty secure]]></title>
-    <link href="http://cloudbps.com/2014/02/25/linux_tty/"/>
-    <id>http://cloudbps.com/2014/02/25/linux_tty/</id>
+    <title><![CDATA[Cloudstack 4.2.1-快照测试案例]]></title>
+    <link href="http://cloudbps.com/2014/02/25/cloud/"/>
+    <id>http://cloudbps.com/2014/02/25/cloud/</id>
     <published>2014-02-25T11:44:33.000Z</published>
-    <updated>2015-01-10T08:30:38.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="Linux_tty_secure">Linux tty secure</h4>
-<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
-<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
-<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
-<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
-<p><a id="more"></a><br>For example, this export command</p>
-<p>export TMOUT=60</p>
-<p>will immediately get the Linux OS to automatically logout an user after his/her login session being idle for 60 seconds or 1 minute!</p>
-<p>The TMOUT environment variable is applied to a command line console login session only.</p>
-<p>For X-window or GUI login, you can easily turn on any pretty auto-lock screen-saver, that works very much like those in Windows.</p>
-<p>For testing purpose, you can set a lower limit. While login to Linux, su to another user ID and execute</p>
-<p>export TMOUT=10</p>
-<p>After being idle for 10 seconds, you’ll likely see this warning message appears and the su login session will be terminated or log out immediately.</p>
-<p>timed out waiting for input: auto-logout</p>
-<p>In order the apply TMOUT to all Linux login accounts, you can put that export command to the login scripts or login profile (.bash_profile or .profile) in respective user home directory.</p>
-<p>But, the easiest way is to write the export command in the system profile instead of respective user’s profile!</p>
-<p>That’s to say, you can append the export TMOUT=60 command to /etc/profile (i.e. the system profile)!</p>
-<p>Bear in mind that any login user can simply overwrite this TMOUT setting!</p>
-<p>For example, he or she can easily disable or extend the time-out value before auto-logout feature triggered. To disable the Linux auto-logout user feature, just set the TMOUT to zero, i.e.</p>
-<p>export TMOUT=0</p>
-<p>In addition, the Linux TMOUT environment variable will not effective if the user has an active or open document. For example, if the VI editor is open, the Linux auto-logout feature in command console will not working!</p>
+    <updated>2015-01-10T18:15:03.000Z</updated>
+    <content type="html"><![CDATA[<p>测试环境：</p>
+<p>Vmware虚拟化</p>
+<pre><code>centos5.3 x86_64 
+centos6.4 x86_64
+</code></pre><p>vmware快照的组成：</p>
+<pre><code><span class="string">.</span><span class="comment">vmdk</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">delta的基础磁盘，当删除该虚机的所有快照时</span><span class="string">,</span><span class="comment">所有创建的delta文件都将合并到原始的vmdk磁盘，如果删除一个单独的快照，那么他的delta的信息合并到父级，当恢复时无论恢复哪个快照，这个快照就是新的父级快照</span>
+<span class="string">.</span><span class="comment">vmsd</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">用于存放快照的元数据和信息</span>
+<span class="string">.</span><span class="comment">vmsn</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">快照的状态文件</span><span class="string">,</span><span class="comment">用于存放快照的精准状态</span>
+<span class="string">.</span><span class="comment">vmss</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">vmware暂停状态的文件</span><span class="string">,</span><span class="comment">移动快照该文件自动删除</span>
+</code></pre><p><a id="more"></a></p>
+<h5 id="1-快照对象">1.快照对象</h5>
+<p>1.1 实例</p>
+<pre><code>实例的快照存储在主存储当中
+</code></pre><p>1.2数据盘</p>
+<pre><code>卷(数据磁盘和系统磁盘)的快照存储在二级存储中
+</code></pre><h5 id="2-快照方式">2.快照方式</h5>
+<pre><code><span class="number">2.1</span>普通快照(<span class="keyword">Disk</span>)
+<span class="number">2.2</span>内存快照(<span class="keyword">Disk</span>+Memory)
+</code></pre><h5 id="3-两者的区别">3.两者的区别</h5>
+<table>
+<thead>
+<tr>
+<th>快照方式</th>
+<th>快照速度</th>
+<th>占用空间</th>
+<th>数据可用程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通快照</td>
+<td>快</td>
+<td>和系统一样大,基于父级的增量备份</td>
+<td>冷数据完全恢复，热数据无法备份</td>
+</tr>
+<tr>
+<td>内存快照</td>
+<td>较慢</td>
+<td>每次快照全备数据，占用系统空间大</td>
+<td>同时备份冷数据和热数据,精确保持系统当前状态</td>
+</tr>
+</tbody>
+</table>
+<p>冷数据：已经写到磁盘的数据</p>
+<p>热数据：内存中的数据</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h4 id="Linux_tty_secure">Linux tty secure</h4>
-<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
-<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
-<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
-<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
-<p>]]>
+    <![CDATA[<p>测试环境：</p>
+<p>Vmware虚拟化</p>
+<pre><code>centos5.3 x86_64 
+centos6.4 x86_64
+</code></pre><p>vmware快照的组成：</p>
+<pre><code><span class="string">.</span><span class="comment">vmdk</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">delta的基础磁盘，当删除该虚机的所有快照时</span><span class="string">,</span><span class="comment">所有创建的delta文件都将合并到原始的vmdk磁盘，如果删除一个单独的快照，那么他的delta的信息合并到父级，当恢复时无论恢复哪个快照，这个快照就是新的父级快照</span>
+<span class="string">.</span><span class="comment">vmsd</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">用于存放快照的元数据和信息</span>
+<span class="string">.</span><span class="comment">vmsn</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">快照的状态文件</span><span class="string">,</span><span class="comment">用于存放快照的精准状态</span>
+<span class="string">.</span><span class="comment">vmss</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">vmware暂停状态的文件</span><span class="string">,</span><span class="comment">移动快照该文件自动删除</span>
+</code></pre><p>]]>
     
     </summary>
     
-      <category term="Linux Secure" scheme="http://cloudbps.com/categories/Linux-Secure/"/>
+      <category term="IAAS" scheme="http://cloudbps.com/tags/IAAS/"/>
+    
+      <category term="CloudStack" scheme="http://cloudbps.com/categories/CloudStack/"/>
     
   </entry>
   
