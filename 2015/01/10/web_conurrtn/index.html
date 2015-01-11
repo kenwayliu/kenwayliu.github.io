@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>WEB并发量级介绍（转自爱开源） | 猫在云端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WEB并发量级介绍（转自爱开源）">
+<meta property="og:url" content="http://cloudbps.com/2015/01/10/web_conurrtn/">
+<meta property="og:site_name" content="猫在云端">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WEB并发量级介绍（转自爱开源）">
+<meta name="twitter:description">
+
+  
+    <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="overlay"></div>
+  <div id="header-outer" class="outer">
+    <div id="profile_img">
+      <img id="circle_img" src="http://7sbxwp.com1.z0.glb.clouddn.com/aboutme?v=2&amp;s=150" />
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">猫在云端</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">做自己喜欢做的事，相信自己</a>
+        </h2>
+      
+    </div>
+    <div id="header-menu">
+      <nav id="main-nav">
+        <ul>
+        
+          <li><a href="/"><i class="fa fa-home icon-setting"></i></a></li>
+        
+          <li><a href="/archives"><i class="fa fa-archive icon-setting"></i></a></li>
+        
+          <li><a href="/about"><i class="fa fa-user icon-setting"></i></a></li>
+        
+        
+          <li><a href="/atom.xml"><i class="fa fa-rss %> icon-setting"></i></a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-web_conurrtn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/10/web_conurrtn/" class="article-date">
+  <time datetime="2015-01-10T04:19:00.000Z" itemprop="datePublished">1月 10 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WEB并发量级介绍（转自爱开源）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a id="more"></a><br>评价一个网站的“大小”，处于视角的不同，有很多种衡量的方法，类似文章数，页面数之类的数据非常明显，也没有什么可以争议的。但对于并发来说，争议非常之多，这里就从一个技术的角度开始，谈谈几个Web网站的数量级。</p>
+<p>相信很多人谈论一个网站的热度，总免不了会询问日均PV，同时在线人数、注册用户数等运营数据，说实话从技术角度来说，这几个数值没有一个可以放在一起比较的——一个静态网站的PV跟一个SNS类/Web Game网站的PV根本就不是一回事。由于互联网有一个传说中的“3秒定律”，可能当下更多的网站技术指标要求1.5秒以内加载整页，或者至少可以达到阅读的标准。如果要较真什么“同时在线”，毫不客气的说，对于HTTP这类短链接的网络协议来说，在WebSocket还不普及的时代，能统计在线纯属扯淡，唯一能做的只是取个时间段，计算下访问用户而已。这些依然可以换算成QPS（Quest Per Second每秒请求数）。就并发而言，我唯一推崇的只有理论最大QPS和悲观QPS。</p>
+<p>这里就大致根据理论最大QPS，给网站做几个分类</p>
+<p>50QPS以下——小网站</p>
+<p>没什么好说的，简单的小网站而已，就如同本站这样，你可以用最简单的方法快速搭建，短期没有太多的技术瓶颈，只要服务器不要太烂就好。</p>
+<p>50～100QPS——DB极限型</p>
+<p>大部分的关系型数据库的每次请求大多都能控制在0.01秒左右，即便你的网站每页面只有一次DB请求，那么页面请求无法保证在1秒钟内完成100个请求，这个阶段要考虑做Cache或者多DB负载。无论那种方案，网站重构是不可避免的。</p>
+<p>300～800QPS——带宽极限型</p>
+<p>目前服务器大多用了IDC提供的“百兆带宽”，这意味着网站出口的实际带宽是8M Byte左右。假定每个页面只有10K Byte，在这个并发条件下，百兆带宽已经吃完。首要考虑是CDN加速／异地缓存，多机负载等技术。</p>
+<p>500～1000QPS——内网带宽极限＋Memcache极限型</p>
+<p>由于Key/value的特性，每个页面对memcache的请求远大于直接对DB的请求，Memcache的悲观并发数在2w左右，看似很高，但事实上大多数情况下，首先是有可能在次之前内网的带宽就已经吃光，接着是在8K QPS左右的情况下，Memcache已经表现出了不稳定，如果代码上没有足够的优化，可能直接将压力转嫁到了DB层上，这就最终导致整个系统在达到某个阀值之上，性能迅速下滑。</p>
+<p>1000～2000QPS——FORK/SELECT，锁模式极限型</p>
+<p>好吧，一句话：线程模型决定吞吐量。不管你系统中最常见的锁是什么锁，这个级别下，文件系统访问锁都成为了灾难。这就要求系统中不能存在中央节点，所有的数据都必须分布存储，数据需要分布处理。总之，关键词：分布</p>
+<p>2000QPS以上——C10K极限</p>
+<p>尽管现在很多应用已经实现了C25K，但短板理论告诉我们，决定网站整体并发的永远是最低效的那个环节。我承认我生涯中从未遇到过2000QPS以上，甚至1.5K以上的网站，希望有此经验的哥们可以一起交流下</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cloudbps.com/2015/01/10/web_conurrtn/" data-id="48fr9x40gvv7ode7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WEB服务器/">WEB服务器</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/10/cdn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CDN介绍(来自又拍云存储)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/10/tun/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">性能调优攻略(转自爱开源)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tom.liu<br>
+      <a href="https://github.com/ken8203/hexo-theme-alberta" target="_blank">Alberta</a> by <a href="http://jaychung.tw" target="_blank">jaychung</a>. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Thank <a href="http://subtlepatterns.com/" target="_blank">Subtlepatterns</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//imsky.github.io/holder/holder.js"></script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

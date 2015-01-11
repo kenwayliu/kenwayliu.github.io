@@ -4,7 +4,7 @@
   <subtitle><![CDATA[做自己喜欢做的事，相信自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cloudbps.com/"/>
-  <updated>2015-01-10T18:37:34.972Z</updated>
+  <updated>2015-01-11T04:31:16.957Z</updated>
   <id>http://cloudbps.com/</id>
   
   <author>
@@ -213,15 +213,48 @@
   </entry>
   
   <entry>
+    <title><![CDATA[WEB并发量级介绍（转自爱开源）]]></title>
+    <link href="http://cloudbps.com/2015/01/10/web_conurrtn/"/>
+    <id>http://cloudbps.com/2015/01/10/web_conurrtn/</id>
+    <published>2015-01-10T04:19:00.000Z</published>
+    <updated>2015-01-10T19:14:13.000Z</updated>
+    <content type="html"><![CDATA[<p><a id="more"></a><br>评价一个网站的“大小”，处于视角的不同，有很多种衡量的方法，类似文章数，页面数之类的数据非常明显，也没有什么可以争议的。但对于并发来说，争议非常之多，这里就从一个技术的角度开始，谈谈几个Web网站的数量级。</p>
+<p>相信很多人谈论一个网站的热度，总免不了会询问日均PV，同时在线人数、注册用户数等运营数据，说实话从技术角度来说，这几个数值没有一个可以放在一起比较的——一个静态网站的PV跟一个SNS类/Web Game网站的PV根本就不是一回事。由于互联网有一个传说中的“3秒定律”，可能当下更多的网站技术指标要求1.5秒以内加载整页，或者至少可以达到阅读的标准。如果要较真什么“同时在线”，毫不客气的说，对于HTTP这类短链接的网络协议来说，在WebSocket还不普及的时代，能统计在线纯属扯淡，唯一能做的只是取个时间段，计算下访问用户而已。这些依然可以换算成QPS（Quest Per Second每秒请求数）。就并发而言，我唯一推崇的只有理论最大QPS和悲观QPS。</p>
+<p>这里就大致根据理论最大QPS，给网站做几个分类</p>
+<p>50QPS以下——小网站</p>
+<p>没什么好说的，简单的小网站而已，就如同本站这样，你可以用最简单的方法快速搭建，短期没有太多的技术瓶颈，只要服务器不要太烂就好。</p>
+<p>50～100QPS——DB极限型</p>
+<p>大部分的关系型数据库的每次请求大多都能控制在0.01秒左右，即便你的网站每页面只有一次DB请求，那么页面请求无法保证在1秒钟内完成100个请求，这个阶段要考虑做Cache或者多DB负载。无论那种方案，网站重构是不可避免的。</p>
+<p>300～800QPS——带宽极限型</p>
+<p>目前服务器大多用了IDC提供的“百兆带宽”，这意味着网站出口的实际带宽是8M Byte左右。假定每个页面只有10K Byte，在这个并发条件下，百兆带宽已经吃完。首要考虑是CDN加速／异地缓存，多机负载等技术。</p>
+<p>500～1000QPS——内网带宽极限＋Memcache极限型</p>
+<p>由于Key/value的特性，每个页面对memcache的请求远大于直接对DB的请求，Memcache的悲观并发数在2w左右，看似很高，但事实上大多数情况下，首先是有可能在次之前内网的带宽就已经吃光，接着是在8K QPS左右的情况下，Memcache已经表现出了不稳定，如果代码上没有足够的优化，可能直接将压力转嫁到了DB层上，这就最终导致整个系统在达到某个阀值之上，性能迅速下滑。</p>
+<p>1000～2000QPS——FORK/SELECT，锁模式极限型</p>
+<p>好吧，一句话：线程模型决定吞吐量。不管你系统中最常见的锁是什么锁，这个级别下，文件系统访问锁都成为了灾难。这就要求系统中不能存在中央节点，所有的数据都必须分布存储，数据需要分布处理。总之，关键词：分布</p>
+<p>2000QPS以上——C10K极限</p>
+<p>尽管现在很多应用已经实现了C25K，但短板理论告诉我们，决定网站整体并发的永远是最低效的那个环节。我承认我生涯中从未遇到过2000QPS以上，甚至1.5K以上的网站，希望有此经验的哥们可以一起交流下</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>]]>
+    
+    </summary>
+    
+      <category term="WEB服务器" scheme="http://cloudbps.com/tags/WEB%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="Web" scheme="http://cloudbps.com/categories/Web/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[性能调优攻略(转自爱开源)]]></title>
     <link href="http://cloudbps.com/2015/01/10/tun/"/>
     <id>http://cloudbps.com/2015/01/10/tun/</id>
     <published>2015-01-10T04:19:00.000Z</published>
-    <updated>2015-01-10T18:24:00.000Z</updated>
+    <updated>2015-01-10T18:41:52.000Z</updated>
     <content type="html"><![CDATA[<p>一、系统性能定义</p>
-<p>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
+<p><a id="more"></a><br>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
 <p>Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。<br>Latency， 系统延迟。也就是系统在处理一个请求或一个任务时的延迟。<br>一般来说，一个系统的性能受到这两个条件的约束，缺一不可。比如，我的系统可以顶得住一百万的并发，但是系统的延迟是2分钟以上，那么，这个一百万的负载毫无意义。系统延迟很短，但是吞吐量很低，同样没有意义。所以，一个好的系统的性能测试必然受到这两个条件的同时作用。 有经验的朋友一定知道，这两个东西的一些关系：</p>
-<p>Throughput越大，Latency会越差。因为请求量过大，系统太繁忙，所以响应速度自然会低。<br>Latency越好，能支持的Throughput就会越高。因为Latency短说明处理速度快，于是就可以处理更多的请求。<br><a id="more"></a><br>二、系统性能测试</p>
+<p>Throughput越大，Latency会越差。因为请求量过大，系统太繁忙，所以响应速度自然会低。<br>Latency越好，能支持的Throughput就会越高。因为Latency短说明处理速度快，于是就可以处理更多的请求。<br>二、系统性能测试</p>
 <p>经过上述的说明，我们知道要测试系统的性能，需要我们收集系统的Throughput和Latency这两个值。</p>
 <p>首先，需要定义Latency这个值，比如说，对于网站系统响应时间必需是5秒以内（对于某些实时系统可能需要定义的更短，比如5ms以内，这个更根据不同的业务来定义）<br>其次，开发性能测试工具，一个工具用来制造高强度的Throughput，另一个工具用来测量Latency。对于第一个工具，你可以参考一下“十个免费的Web压力测试工具”，关于如何测量Latency，你可以在代码中测量，但是这样会影响程序的执行，而且只能测试到程序内部的Latency，真正的Latency是整个系统都算上，包括操作系统和网络的延时，你可以使用Wireshark来抓网络包来测量。这两个工具具体怎么做，这个还请大家自己思考去了。<br>最后，开始性能测试。你需要不断地提升测试的Throughput，然后观察系统的负载情况，如果系统顶得住，那就观察Latency的值。这样，你就可以找到系统的最大负载，并且你可以知道系统的响应延时是多少。<br>再多说一些，</p>
 <p>关于Latency，如果吞吐量很少，这个值估计会非常稳定，当吞吐量越来越大时，系统的Latency会出现非常剧烈的抖动，所以，我们在测量Latency的时候，我们需要注意到Latency的分布，也就是说，有百分之几的在我们允许的范围，有百分之几的超出了，有百分之几的完全不可接受。也许，平均下来的Latency达标了，但是其中仅有50%的达到了我们可接受的范围。那也没有意义。<br>关于性能测试，我们还需要定义一个时间段。比如：在某个吞吐量上持续15分钟。因为当负载到达的时候，系统会变得不稳定，当过了一两分钟后，系统才会稳定。另外，也有可能是，你的系统在这个负载下前几分钟还表现正常，然后就不稳定了，甚至垮了。所以，需要这么一段时间。这个值，我们叫做峰值极限。<br>性能测试还需要做Soak Test，也就是在某个吞吐量下，系统可以持续跑一周甚至更长。这个值，我们叫做系统的正常运行的负载极限。<br>性能测试有很多很复要的东西，比如：burst test等。 这里不能一一详述，这里只说了一些和性能调优相关的东西。总之，性能测试是一细活和累活。</p>
@@ -303,9 +336,7 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>一、系统性能定义</p>
-<p>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
-<p>Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。<br>Latency， 系统延迟。也就是系统在处理一个请求或一个任务时的延迟。<br>一般来说，一个系统的性能受到这两个条件的约束，缺一不可。比如，我的系统可以顶得住一百万的并发，但是系统的延迟是2分钟以上，那么，这个一百万的负载毫无意义。系统延迟很短，但是吞吐量很低，同样没有意义。所以，一个好的系统的性能测试必然受到这两个条件的同时作用。 有经验的朋友一定知道，这两个东西的一些关系：</p>
-<p>Throughput越大，Latency会越差。因为请求量过大，系统太繁忙，所以响应速度自然会低。<br>Latency越好，能支持的Throughput就会越高。因为Latency短说明处理速度快，于是就可以处理更多的请求。<br>]]>
+<p>]]>
     
     </summary>
     
@@ -881,50 +912,6 @@
       <category term="分布式系统" scheme="http://cloudbps.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/"/>
     
       <category term="Glusterfs" scheme="http://cloudbps.com/categories/Glusterfs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Linux tty secure]]></title>
-    <link href="http://cloudbps.com/2014/02/25/linux_tty/"/>
-    <id>http://cloudbps.com/2014/02/25/linux_tty/</id>
-    <published>2014-02-25T11:44:33.000Z</published>
-    <updated>2015-01-10T18:19:32.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="Linux_tty_secure">Linux tty secure</h4>
-<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
-<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
-<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
-<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
-<p><a id="more"></a><br>For example, this export command</p>
-<p>export TMOUT=60</p>
-<p>will immediately get the Linux OS to automatically logout an user after his/her login session being idle for 60 seconds or 1 minute!</p>
-<p>The TMOUT environment variable is applied to a command line console login session only.</p>
-<p>For X-window or GUI login, you can easily turn on any pretty auto-lock screen-saver, that works very much like those in Windows.</p>
-<p>For testing purpose, you can set a lower limit. While login to Linux, su to another user ID and execute</p>
-<p>export TMOUT=10</p>
-<p>After being idle for 10 seconds, you’ll likely see this warning message appears and the su login session will be terminated or log out immediately.</p>
-<p>timed out waiting for input: auto-logout</p>
-<p>In order the apply TMOUT to all Linux login accounts, you can put that export command to the login scripts or login profile (.bash_profile or .profile) in respective user home directory.</p>
-<p>But, the easiest way is to write the export command in the system profile instead of respective user’s profile!</p>
-<p>That’s to say, you can append the export TMOUT=60 command to /etc/profile (i.e. the system profile)!</p>
-<p>Bear in mind that any login user can simply overwrite this TMOUT setting!</p>
-<p>For example, he or she can easily disable or extend the time-out value before auto-logout feature triggered. To disable the Linux auto-logout user feature, just set the TMOUT to zero, i.e.</p>
-<p>export TMOUT=0</p>
-<p>In addition, the Linux TMOUT environment variable will not effective if the user has an active or open document. For example, if the VI editor is open, the Linux auto-logout feature in command console will not working!</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h4 id="Linux_tty_secure">Linux tty secure</h4>
-<p>Almost everyone (not just system administrators) are forgetful and used to leave the Linux/Unix login session open (without logging out).</p>
-<p>So, how to make sure all the Linux servers will automatically logout users after idle for certain minutes?</p>
-<p>Don’t worry. There is no tedious configuration or additional package to be installed to make this happen.</p>
-<p>In fact, the simplest way is to configure the TMOUT environment variable!</p>
-<p>]]>
-    
-    </summary>
-    
-      <category term="系统安全" scheme="http://cloudbps.com/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
-    
-      <category term="Linux Secure" scheme="http://cloudbps.com/categories/Linux-Secure/"/>
     
   </entry>
   

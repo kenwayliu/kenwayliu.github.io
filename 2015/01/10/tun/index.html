@@ -5,217 +5,76 @@
   
   <title>性能调优攻略(转自爱开源) | 猫在云端</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、系统性能定义
-让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：
-Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。Latency， 系统延迟。也就是系统在处理一个请">
+  <meta name="description" content="一、系统性能定义">
 <meta property="og:type" content="article">
 <meta property="og:title" content="性能调优攻略(转自爱开源)">
 <meta property="og:url" content="http://cloudbps.com/2015/01/10/tun/">
 <meta property="og:site_name" content="猫在云端">
-<meta property="og:description" content="一、系统性能定义
-让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：
-Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。Latency， 系统延迟。也就是系统在处理一个请">
+<meta property="og:description" content="一、系统性能定义">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能调优攻略(转自爱开源)">
-<meta name="twitter:description" content="一、系统性能定义
-让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：
-Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。Latency， 系统延迟。也就是系统在处理一个请">
+<meta name="twitter:description" content="一、系统性能定义">
 
   
     <link rel="alternative" href="/atom.xml" title="猫在云端" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
-  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 
   
-
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
 <body>
   <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<div class="profilepic">
-			<img src="https://avatars2.githubusercontent.com/u/5484331?v=3&amp;s=150">
-		</div>
-
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
-		</hgroup>
-
-		
-		<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
-		
-
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
-
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="/#" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud">
-						<a href="/tags/IAAS/" style="font-size: 20.00px;">IAAS</a><a href="/tags/Linux常用工具/" style="font-size: 10.00px;">Linux常用工具</a><a href="/tags/Mac添加路由/" style="font-size: 10.00px;">Mac添加路由</a><a href="/tags/NTP时间/" style="font-size: 10.00px;">NTP时间</a><a href="/tags/VPN/" style="font-size: 10.00px;">VPN</a><a href="/tags/WEB服务器/" style="font-size: 13.33px;">WEB服务器</a><a href="/tags/分布式系统/" style="font-size: 10.00px;">分布式系统</a><a href="/tags/系统安全/" style="font-size: 16.67px;">系统安全</a><a href="/tags/缓存加速/" style="font-size: 10.00px;">缓存加速</a><a href="/tags/脚本语言/" style="font-size: 13.33px;">脚本语言</a><a href="/tags/调优手册/" style="font-size: 10.00px;">调优手册</a><a href="/tags/运维自动化/" style="font-size: 10.00px;">运维自动化</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zipperary.com/">Zippera的Blog</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://kisspuppet.com/">Puppet运维自动化技术分享</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.xuchanggang.cn/">没有伞的孩子必须努力奔跑</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bubbyroom.com/">守住每一天</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://opython.com/">Python自动化运维</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.aikaiyuan.com/">爱开源</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://noops.me/">小米运维</a>
-			        
-				</section>
-				
-
-				
-				
-				<section class="switch-part switch-part4">
-				
-					喜欢交流,喜欢开源
-				</section>
-				
-			</div>
-		</div>
-	</header>				
-</div>
+    <div id="wrap">
+      <header id="header">
+  <div id="overlay"></div>
+  <div id="header-outer" class="outer">
+    <div id="profile_img">
+      <img id="circle_img" src="http://7sbxwp.com1.z0.glb.clouddn.com/aboutme?v=2&amp;s=150" />
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay"></div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img src="https://avatars2.githubusercontent.com/u/5484331?v=3&amp;s=150">
-			</div>
-
-			<hgroup>
-			  <h1 class="header-author"><a href="/">Tom.liu</a></h1>
-			</hgroup>
-			
-			<p class="header-subtitle">做自己喜欢做的事，相信自己</p>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="/#" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/cloudbps" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
-</nav>
-      <article id="post-tun" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/01/10/tun/" class="article-date">
-  	<time datetime="2015-01-10T04:19:00.000Z" itemprop="datePublished">1月 10 2015</time>
-</a>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">猫在云端</a>
+      </h1>
       
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">做自己喜欢做的事，相信自己</a>
+        </h2>
+      
+    </div>
+    <div id="header-menu">
+      <nav id="main-nav">
+        <ul>
+        
+          <li><a href="/"><i class="fa fa-home icon-setting"></i></a></li>
+        
+          <li><a href="/archives"><i class="fa fa-archive icon-setting"></i></a></li>
+        
+          <li><a href="/about"><i class="fa fa-user icon-setting"></i></a></li>
+        
+        
+          <li><a href="/atom.xml"><i class="fa fa-rss %> icon-setting"></i></a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tun" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/10/tun/" class="article-date">
+  <time datetime="2015-01-10T04:19:00.000Z" itemprop="datePublished">1月 10 2015</time>
+</a>
+    
   <div class="article-category">
     <a class="article-category-link" href="/categories/调优/">调优</a>
   </div>
 
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优手册/">调优手册</a></li></ul>
-
-    </div>
-  
+  </div>
   <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -231,9 +90,9 @@ Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数
     <div class="article-entry" itemprop="articleBody">
       
         <p>一、系统性能定义</p>
-<p>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
+<p><a id="more"></a><br>让我们先来说说如何什么是系统性能。这个定义非常关键，如果我们不清楚什么是系统性能，那么我们将无法定位之。我见过很多朋友会觉得这很容易，但是仔细一问，其实他们并没有一个比较系统的方法，所以，在这里我想告诉大家如何系统地来定位性能。 总体来说，系统性能就是两个事：</p>
 <p>Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数。<br>Latency， 系统延迟。也就是系统在处理一个请求或一个任务时的延迟。<br>一般来说，一个系统的性能受到这两个条件的约束，缺一不可。比如，我的系统可以顶得住一百万的并发，但是系统的延迟是2分钟以上，那么，这个一百万的负载毫无意义。系统延迟很短，但是吞吐量很低，同样没有意义。所以，一个好的系统的性能测试必然受到这两个条件的同时作用。 有经验的朋友一定知道，这两个东西的一些关系：</p>
-<p>Throughput越大，Latency会越差。因为请求量过大，系统太繁忙，所以响应速度自然会低。<br>Latency越好，能支持的Throughput就会越高。因为Latency短说明处理速度快，于是就可以处理更多的请求。<br><a id="more"></a><br>二、系统性能测试</p>
+<p>Throughput越大，Latency会越差。因为请求量过大，系统太繁忙，所以响应速度自然会低。<br>Latency越好，能支持的Throughput就会越高。因为Latency短说明处理速度快，于是就可以处理更多的请求。<br>二、系统性能测试</p>
 <p>经过上述的说明，我们知道要测试系统的性能，需要我们收集系统的Throughput和Latency这两个值。</p>
 <p>首先，需要定义Latency这个值，比如说，对于网站系统响应时间必需是5秒以内（对于某些实时系统可能需要定义的更短，比如5ms以内，这个更根据不同的业务来定义）<br>其次，开发性能测试工具，一个工具用来制造高强度的Throughput，另一个工具用来测量Latency。对于第一个工具，你可以参考一下“十个免费的Web压力测试工具”，关于如何测量Latency，你可以在代码中测量，但是这样会影响程序的执行，而且只能测试到程序内部的Latency，真正的Latency是整个系统都算上，包括操作系统和网络的延时，你可以使用Wireshark来抓网络包来测量。这两个工具具体怎么做，这个还请大家自己思考去了。<br>最后，开始性能测试。你需要不断地提升测试的Throughput，然后观察系统的负载情况，如果系统顶得住，那就观察Latency的值。这样，你就可以找到系统的最大负载，并且你可以知道系统的响应延时是多少。<br>再多说一些，</p>
 <p>关于Latency，如果吞吐量很少，这个值估计会非常稳定，当吞吐量越来越大时，系统的Latency会出现非常剧烈的抖动，所以，我们在测量Latency的时候，我们需要注意到Latency的分布，也就是说，有百分之几的在我们允许的范围，有百分之几的超出了，有百分之几的完全不可接受。也许，平均下来的Latency达标了，但是其中仅有50%的达到了我们可接受的范围。那也没有意义。<br>关于性能测试，我们还需要定义一个时间段。比如：在某个吞吐量上持续15分钟。因为当负载到达的时候，系统会变得不稳定，当过了一两分钟后，系统才会稳定。另外，也有可能是，你的系统在这个负载下前几分钟还表现正常，然后就不稳定了，甚至垮了。所以，需要这么一段时间。这个值，我们叫做峰值极限。<br>性能测试还需要做Soak Test，也就是在某个吞吐量下，系统可以持续跑一周甚至更长。这个值，我们叫做系统的正常运行的负载极限。<br>性能测试有很多很复要的东西，比如：burst test等。 这里不能一一详述，这里只说了一些和性能调优相关的东西。总之，性能测试是一细活和累活。</p>
@@ -315,24 +174,31 @@ Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数
 
       
     </div>
+    <footer class="article-footer">
+      <a data-url="http://cloudbps.com/2015/01/10/tun/" data-id="mlxr0k8nkv9bdwlk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调优手册/">调优手册</a></li></ul>
+
+    </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/01/10/cdn/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
+    <a href="/2015/01/10/web_conurrtn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          CDN介绍(来自又拍云存储)
+          WEB并发量级介绍（转自爱开源）
         
       </div>
     </a>
   
   
     <a href="/2015/01/10/nginx_productiontun/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Nginx生产环境调优</div>
-      <strong class="article-nav-caption">&gt;</strong>
     </a>
   
 </nav>
@@ -340,65 +206,32 @@ Throughput ，吞吐量。也就是每秒钟可以处理的请求数，任务数
   
 </article>
 
-
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="tun" data-title="性能调优攻略(转自爱开源)" data-url="http://cloudbps.com/2015/01/10/tun/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
-
+</section>
+        
+      </div>
       <footer id="footer">
+  
   <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2015 Tom.liu
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tom.liu<br>
+      <a href="https://github.com/ken8203/hexo-theme-alberta" target="_blank">Alberta</a> by <a href="http://jaychung.tw" target="_blank">jaychung</a>. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Thank <a href="http://subtlepatterns.com/" target="_blank">Subtlepatterns</a>
     </div>
   </div>
 </footer>
     </div>
     
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//imsky.github.io/holder/holder.js"></script>
+
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
   <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
-  <script src="/js/main.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
 
 
   </div>
